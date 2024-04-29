@@ -6,9 +6,7 @@
         
         static void Main(string[] args)
         {
-<<<<<<< HEAD
-           
-=======
+
             // 필요한 클래스들 불러오기
             SaveLoad saveLoad = new SaveLoad();
             MainScreen mainScreen = new MainScreen();
@@ -33,7 +31,7 @@
                     case Screen.Save: saveLoad.SavePlayerInfo(); Console.WriteLine("저장이 완료되었습니다."); Thread.Sleep(1000); break; // 저장 메소드 불러오기
                 }
             }
->>>>>>> develop
+
         }
     }
 }
