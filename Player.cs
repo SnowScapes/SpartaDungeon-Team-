@@ -29,6 +29,15 @@ namespace SpartaDungeon_Team_
             Potion = 3;
         }
 
+        public float TotalAtk() // 총 공격력 = 공격력 + 장착 장비 공격력
+        {
+            return Attack + Weapon.value;
+        }
+
+        public float TotalDef()  // 총 방어력 = 방어력 + 장착 장비 방어력
+        {
+            return Defense + Armor.value;
+        }
         //아이템 장착, 해제 기능
         //type(방어구or무기)에 따라 각 위치에 장착
         //판매 혹은 해제할 경우엔 초기화
