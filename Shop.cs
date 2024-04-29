@@ -73,8 +73,9 @@ namespace SpartaDungeon_Team_
                             }
                             else if (!Equipments[n - 1].Purchased && Equipments[n - 1].Price <= Program.PlayerData.Gold)
                             {
-                                Inventory.MyItems.Add(Equipments[n - 1]);
+                                Inventory.MyItems.Add(n-1);
                                 Equipments[n - 1].Purchased = true;
+                                Program.PlayerData.Gold -= Equipments[n - 1].Price;
                                 Console.WriteLine("구매를 완료했습니다.");
                                 Thread.Sleep(1000);
                             }
@@ -96,19 +97,44 @@ namespace SpartaDungeon_Team_
 
         private void shopSell()
         {
-            Console.Clear();
-            Console.WriteLine("상점 - 아이템 판매");
-            Console.WriteLine("필요한 아이템을 구매하거나 판매할 수 있는 상점입니다.\n");
-            Console.WriteLine("[아이템 목록]");
-            
-            for (int i=0; i<Inventory.MyItems.Count; i++)
-                Console.WriteLine("- {0} {1}  | {2} +{3}  | {4} | {5} G", i+1, Inventory.MyItems[i].Name, Inventory.MyItems[i].Type == EquipmentType.Armor?"방어력":"공격력", Inventory.MyItems[i].Stat, Inventory.MyItems[i].Description, Inventory.MyItems[i].Price);
+            bool exit = false;
+            while(!exit)
+            {
+                Console.Clear();
+                Console.WriteLine("상점 - 아이템 판매");
+                Console.WriteLine("필요한 아이템을 구매하거나 판매할 수 있는 상점입니다.\n");
+                Console.WriteLine("[아이템 목록]");
 
-            Console.WriteLine("\n0. 나가기\n");
-            Console.WriteLine("원하시는 행동을 입력해주세요.");
-            Console.Write(">> ");
+                for (int i = 0; i < Inventory.MyItems.Count; i++)
+                {
+                    int index = Inventory.MyItems[i];
+                    Console.WriteLine("- {0} {1}  | {2} +{3}  | {4} | {5} G", i + 1, Equipments[index].Name, Equipments[index].Type == EquipmentType.Armor ? "방어력" : "공격력", Equipments[index].Stat, Equipments[index].Description, Equipments[index].Price);
+                }
 
-            Console.ReadLine();
+                Console.WriteLine("\n0. 나가기\n");
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write(">> ");
+
+                if (int.TryParse(Console.ReadLine(), out int input) && input >= 0 && input <= Inventory.MyItems.Count)
+                {
+                    switch (input)
+                    {
+                        case 0: exit = true; break;
+                        case int n when n > 0 && n <= Inventory.MyItems.Count:
+                            Equipments[Inventory.MyItems[n - 1]].Purchased = false;
+                            Program.PlayerData.Gold += (int)(Equipments[Inventory.MyItems[n - 1]].Price * 0.85);
+                            Inventory.MyItems.RemoveAt(n - 1);
+                            Console.WriteLine("판매에 성공했습니다.");
+                            Thread.Sleep(1000);
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(1000);
+                }
+            }
         }
     }
 }
