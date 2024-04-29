@@ -18,8 +18,8 @@ namespace SpartaDungeon_Team_
             Console.WriteLine();
             Console.WriteLine("Lv. " + Program.PlayerData.Level.ToString("00"));
             Console.WriteLine("{0} (전사)", Program.PlayerData.Name);
-            Console.WriteLine("공격력 : {0}{1}", Program.PlayerData.TotalAtk().ToString(), Program.PlayerData);
-            Console.WriteLine("방어력 : " + Program.PlayerData.Defense.ToString());
+            Console.WriteLine("공격력 : {0}{1}", Program.PlayerData.TotalAtk().ToString(), Program.PlayerData.Weapon.Name != null ? string.Format(" (+{0})", Program.PlayerData.Weapon.value) : "");
+            Console.WriteLine("방어력 : {0}{1}", Program.PlayerData.TotalDef().ToString(), Program.PlayerData.Armor.Name != null ? string.Format(" (+{0})", Program.PlayerData.Armor.value) : "");
             Console.WriteLine("체  력 : " + Program.PlayerData.Health.ToString());
             Console.WriteLine("Gold : {0} G",Program.PlayerData.Gold.ToString());
             Console.WriteLine();

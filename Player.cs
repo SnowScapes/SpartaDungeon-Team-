@@ -38,6 +38,7 @@ namespace SpartaDungeon_Team_
         {
             return Defense + Armor.value;
         }
+
         //아이템 장착, 해제 기능
         //type(방어구or무기)에 따라 각 위치에 장착
         //판매 혹은 해제할 경우엔 초기화
