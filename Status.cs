@@ -21,7 +21,8 @@ namespace SpartaDungeon_Team_
             Console.WriteLine("공격력 : {0}{1}", Program.PlayerData.TotalAtk().ToString(), Program.PlayerData.Weapon.Name != null ? string.Format(" (+{0})", Program.PlayerData.Weapon.value) : "");
             Console.WriteLine("방어력 : {0}{1}", Program.PlayerData.TotalDef().ToString(), Program.PlayerData.Armor.Name != null ? string.Format(" (+{0})", Program.PlayerData.Armor.value) : "");
             Console.WriteLine("체  력 : " + Program.PlayerData.Health.ToString());
-            Console.WriteLine("Gold : {0} G",Program.PlayerData.Gold.ToString());
+            Console.WriteLine("Gold : {0} G", Program.PlayerData.Gold.ToString());
+            Console.WriteLine("Exp : {0}", Program.PlayerData.Exp.ToString());
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             if (NotValid)     //잘못된 입력일 때 잘못된 입력 출력 및 화면 재출력
