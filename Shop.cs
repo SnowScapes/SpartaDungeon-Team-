@@ -121,8 +121,14 @@ namespace SpartaDungeon_Team_
                     {
                         case 0: exit = true; break;
                         case int n when n > 0 && n <= Inventory.MyItems.Count:
-                            Equipments[Inventory.MyItems[n - 1]].Purchased = false;
+                            int index = Inventory.MyItems[n - 1];
+                            // 판매하려는 무기 또는 방어구가 착용 중인 아이템이라면 장착 해제
+                            if (Program.PlayerData.Armor.Equals(Equipments[index]) || Program.PlayerData.Weapon.Equals(Equipments[index]))
+                                Program.PlayerData.ManageEquipments(Equipments[index]);
+                            Equipments[index].Purchased = false;
+                            // 판매 가격은 구입 가격의 85%
                             Program.PlayerData.Gold += (int)(Equipments[Inventory.MyItems[n - 1]].Price * 0.85);
+                            // 인벤토리 리스트에서 제거
                             Inventory.MyItems.RemoveAt(n - 1);
                             Console.WriteLine("판매에 성공했습니다.");
                             Thread.Sleep(1000);
