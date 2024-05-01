@@ -8,7 +8,7 @@ namespace SpartaDungeon_Team_
 {
     internal class NewPlayer
     {
-        public void CreatePlayer()
+        public bool CreatePlayer()
         {
             while (true)
             {
@@ -55,6 +55,7 @@ namespace SpartaDungeon_Team_
                 Program.PlayerData.SetPlayerStat(jobCode);
                 break;
             }
+            return true;
         }
     }
 }
