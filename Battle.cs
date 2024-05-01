@@ -20,11 +20,6 @@ namespace SpartaDungeon_Team_
         int[] testMonsterIdx = new int[3] { 0, 1, 2 };
         bool isfirst = true;
 
-        private Monster GetButtleMonsterInfo(int monsterIdx)
-        {
-            return battleMonsters[monsterIdx]; // 리스트에 없는 몬스터 선택 시 체크 필요
-        }
-
         public void BattleEntering() // 전투 메뉴 입장
         {
             bool notValid = false;
@@ -181,6 +176,7 @@ namespace SpartaDungeon_Team_
             {
                 EndPhase(1);
             }
+
             foreach(var monster in battleMonsters)
             {
                 if(monster.isDeath == false)
