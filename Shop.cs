@@ -13,7 +13,7 @@ namespace SpartaDungeon_Team_
         public void ViewShop()
         {
             bool exit = false;
-            while(!exit)
+            while (!exit)
             {
                 Console.Clear();
                 Console.WriteLine("상점");
@@ -23,7 +23,7 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("[아이템 목록]");
 
                 foreach (Equipment e in Equipments)
-                    Console.WriteLine("- {0}  | {1} +{2}  | {3} | {4}", e.Name, e.Type == EquipmentType.Armor ? "방어력" : "공격력", e.Stat, e.Description, e.Purchased ? "구매완료" : e.Price +" G");
+                    Console.WriteLine("- {0}  | {1} +{2}  | {3} | {4}", e.Name, e.Type == EquipmentType.Armor ? "방어력" : "공격력", e.Stat, e.Description, e.Purchased ? "구매완료" : e.Price + " G");
 
                 Console.WriteLine("\n1. 아이템 구매");
                 Console.WriteLine("2. 아이템 판매");
@@ -31,7 +31,7 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write(">> ");
 
-                switch(Console.ReadLine())
+                switch (Console.ReadLine())
                 {
                     case "0": exit = true; break;
                     case "1": shopBuy(); break;
@@ -44,7 +44,7 @@ namespace SpartaDungeon_Team_
         private void shopBuy()
         {
             bool exit = false;
-            while(!exit)
+            while (!exit)
             {
                 Console.Clear();
                 Console.WriteLine("상점 - 아이템 구매");
@@ -73,7 +73,7 @@ namespace SpartaDungeon_Team_
                             }
                             else if (!Equipments[n - 1].Purchased && Equipments[n - 1].Price <= Program.PlayerData.Gold)
                             {
-                                Inventory.MyItems.Add(n-1);
+                                Inventory.MyItems.Add(n - 1);
                                 Equipments[n - 1].Purchased = true;
                                 Program.PlayerData.Gold -= Equipments[n - 1].Price;
                                 Console.WriteLine("구매를 완료했습니다.");
@@ -98,7 +98,7 @@ namespace SpartaDungeon_Team_
         private void shopSell()
         {
             bool exit = false;
-            while(!exit)
+            while (!exit)
             {
                 Console.Clear();
                 Console.WriteLine("상점 - 아이템 판매");

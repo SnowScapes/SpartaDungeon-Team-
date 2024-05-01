@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
-    enum EquipmentType
+    internal enum EquipmentType
     {
         Armor = 0,
         Weapon = 1
     }
-    struct Equipment
+
+    internal struct Equipment
     {
         public string Name; // 장비 이름
         public EquipmentType Type; // 장비 타입(방어구, 무기)

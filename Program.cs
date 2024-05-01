@@ -3,7 +3,7 @@
     internal class Program
     {
         public static Player PlayerData;
-        
+
         static void Main(string[] args)
         {
 
@@ -20,14 +20,14 @@
             saveLoad.LoadItemInfo();
 
             // 행동 선택하기
-            while(true)
+            while (true)
             {
                 //메인화면 출력 및 메뉴 선택
                 switch (mainScreen.ShowMain())
                 {
                     case Screen.Status: break; // 상태 보기 화면 메서드 불러오기
                     case Screen.Dungeon: stageScreen.MainStage(); break; // 전투 시작 화면 메서드 불러오기
-                    case Screen.Inventory:inventoryScreen.ShowInventory(); break; // 인벤토리 화면 메서드 불러오기
+                    case Screen.Inventory: inventoryScreen.ShowInventory(); break; // 인벤토리 화면 메서드 불러오기
                     case Screen.Shop: shopScreen.ViewShop(); break; // 상점 화면 메서드 불러오기
                     case Screen.Save: saveLoad.SavePlayerInfo(); Console.WriteLine("저장이 완료되었습니다."); Thread.Sleep(1000); break; // 저장 메소드 불러오기
                 }
@@ -36,5 +36,5 @@
         }
     }
 
-   
+
 }

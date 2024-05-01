@@ -19,17 +19,17 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.\n");
                 Console.WriteLine("[아이템 목록]");
 
-                for (int i=0; i<MyItems.Count; i++)
+                for (int i = 0; i < MyItems.Count; i++)
                 {
                     int index = MyItems[i];
-                    Console.Write("- {0}", Shop.Equipments[index].Equals(Program.PlayerData.Armor) || Shop.Equipments[index].Equals(Program.PlayerData.Weapon) ? "[E]":"");
+                    Console.Write("- {0}", Shop.Equipments[index].Equals(Program.PlayerData.Armor) || Shop.Equipments[index].Equals(Program.PlayerData.Weapon) ? "[E]" : "");
                     Console.WriteLine("{0}  | {1} +{2}  | {3}", Shop.Equipments[index].Name, Shop.Equipments[index].Type == EquipmentType.Armor ? "방어력" : "공격력", Shop.Equipments[index].Stat, Shop.Equipments[index].Description);
                 }
 
                 Console.WriteLine("\n1. 장착 관리");
                 Console.WriteLine("0. 나가기");
 
-                switch(Console.ReadLine())
+                switch (Console.ReadLine())
                 {
                     case "0": exit = true; break;
                     case "1": inventoryEquip(); break;
@@ -41,7 +41,7 @@ namespace SpartaDungeon_Team_
         void inventoryEquip()
         {
             bool exit = false;
-            while(!exit)
+            while (!exit)
             {
                 Console.Clear();
                 Console.WriteLine("인벤토리 - 장착 관리");
@@ -51,7 +51,7 @@ namespace SpartaDungeon_Team_
                 for (int i = 0; i < MyItems.Count; i++)
                 {
                     int index = MyItems[i];
-                    Console.Write("- {0} {1}", i+1, Shop.Equipments[index].Equals(Program.PlayerData.Armor) || Shop.Equipments[index].Equals(Program.PlayerData.Weapon) ? "[E]" : "");
+                    Console.Write("- {0} {1}", i + 1, Shop.Equipments[index].Equals(Program.PlayerData.Armor) || Shop.Equipments[index].Equals(Program.PlayerData.Weapon) ? "[E]" : "");
                     Console.WriteLine("{0}  | {1} +{2}  | {3}", Shop.Equipments[index].Name, Shop.Equipments[index].Type == EquipmentType.Armor ? "방어력" : "공격력", Shop.Equipments[index].Stat, Shop.Equipments[index].Description);
                 }
 

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
-
     public enum MonsterType
     {
         None = 0,
@@ -43,7 +42,7 @@ namespace SpartaDungeon_Team_
 
         bool StageClear = true;
         static int stageLevel = 1;
-        
+
         Random random = new Random();
 
         public Stage()
@@ -72,7 +71,7 @@ namespace SpartaDungeon_Team_
                 extraMonsterSpawnRate = maxExtraMonsterSpawnRate;
             }
             double bossMonsterSpawnRate = 0.05 * _stageLevel; // 던전 레벨에 따라 증가
-            
+
             // 최대 보스 몬스터 등장 확률 제한
             double maxBossMonsterSpawnRate = 0.3; // 최대 30%
 
@@ -121,7 +120,7 @@ namespace SpartaDungeon_Team_
         void StageEnter(int _stageLevel)
         {
             SpawnMonsters(_stageLevel);
-        
+
             if (StageClear == false)
             {
                 Console.WriteLine("패배 하였습니다");
@@ -149,7 +148,7 @@ namespace SpartaDungeon_Team_
         {
             Console.Clear();
             while (true)
-            {          
+            {
                 Intro();
                 switch (Console.ReadLine())
                 {
@@ -160,13 +159,13 @@ namespace SpartaDungeon_Team_
 
                     case "2":
                         Console.Clear();
-                        StageEnter(stageLevel);  
+                        StageEnter(stageLevel);
                         break;
 
                     case "3":
                         Console.Clear();
                         return;
-                        
+
                     default:
                         Console.WriteLine("잘못 입력하셨습니다.");
                         Thread.Sleep(1000);

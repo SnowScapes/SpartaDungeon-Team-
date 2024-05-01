@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace SpartaDungeon_Team_
 {
@@ -50,7 +50,7 @@ namespace SpartaDungeon_Team_
                 new JProperty("health", Program.PlayerData.Health),
                 new JProperty("gold", Program.PlayerData.Gold),
                 new JProperty("potion", Program.PlayerData.Potion),
-                new JProperty("dungenLevel",Stage.GetStageLevel())
+                new JProperty("dungenLevel", Stage.GetStageLevel())
             );
 
             File.WriteAllText(playerInfoPath, playerData.ToString());

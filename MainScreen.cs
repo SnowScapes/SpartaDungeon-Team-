@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
-    enum Screen
+    internal enum Screen
     {
         Status = 1,
         Dungeon = 2,
@@ -18,7 +18,7 @@ namespace SpartaDungeon_Team_
     {
         public Screen ShowMain()
         {
-            while(true)
+            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
@@ -31,7 +31,7 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write(">> ");
 
-                if(int.TryParse(Console.ReadLine(), out int input) && Enum.IsDefined(typeof(Screen), input))
+                if (int.TryParse(Console.ReadLine(), out int input) && Enum.IsDefined(typeof(Screen), input))
                     return (Screen)input;
                 else
                 {

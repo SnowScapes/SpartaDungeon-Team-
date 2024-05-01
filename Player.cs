@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
-    struct Player
+    internal struct Player
     {
         public int Level; // 플레이어 레벨
         public string Name; // 플레이어 이름
