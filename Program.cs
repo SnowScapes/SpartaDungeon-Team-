@@ -8,15 +8,12 @@
         {
             // 필요한 클래스들 불러오기
             SaveLoad saveLoad = new SaveLoad();
+            Intro introScreen = new Intro();
             MainScreen mainScreen = new MainScreen();
             Shop shopScreen = new Shop();
             Inventory inventoryScreen = new Inventory();
 
-            // 플레이어정보(PlayerInfo.Json) 로드
-            // 아이템정보(ItemInfo.Json) 로드
-            saveLoad.LoadPlayerInfo();
-            saveLoad.LoadItemInfo();
-
+            introScreen.IntroScreen();
             // 행동 선택하기
             while(true)
             {
