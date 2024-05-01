@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-using static SpartaDungeon_Team_.Stage;
+
 
 namespace SpartaDungeon_Team_
 {
@@ -62,23 +62,18 @@ namespace SpartaDungeon_Team_
         {
             // 기본 몬스터 등장 확률
             double baseMonsterSpawnRate = 0.5;
-
             // 추가 몬스터 등장 확률
             double extraMonsterSpawnRate = 0.1 * _stageLevel; // 던전 레벨에 따라 증가
-
             // 최대 추가 몬스터 등장 확률 제한
             double maxExtraMonsterSpawnRate = 0.4; // 최대 40%
-
-            //int randomMonsterNumber = random.Next(1, (int)MonsterType.End);
 
             if (extraMonsterSpawnRate > maxExtraMonsterSpawnRate)
             {
                 extraMonsterSpawnRate = maxExtraMonsterSpawnRate;
             }
-
             double bossMonsterSpawnRate = 0.05 * _stageLevel; // 던전 레벨에 따라 증가
-                                                              // 최대 보스 몬스터 등장 확률 제한
             
+            // 최대 보스 몬스터 등장 확률 제한
             double maxBossMonsterSpawnRate = 0.3; // 최대 30%
 
             if (bossMonsterSpawnRate > maxBossMonsterSpawnRate)
@@ -96,7 +91,7 @@ namespace SpartaDungeon_Team_
 
             int totalMonsters = random.Next(1, 4); // 추가 몬스터의 수를 결정하기 위해 1에서 4 사이의 난수 생성
 
-            for (int i = 1; i < totalMonsters; i++)
+            for (int i = 1; i <= totalMonsters; i++)
             {
                 if (random.NextDouble() < totalSpawnRate) //nextDouble (0.0~1.0)
                 {
