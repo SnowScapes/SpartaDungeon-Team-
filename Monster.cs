@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
-    struct Monster
+    class Monster
     {
         public int index;
         public int level; //레벨

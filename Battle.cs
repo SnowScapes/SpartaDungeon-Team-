@@ -10,7 +10,7 @@ namespace SpartaDungeon_Team_
     {
         Program program = new Program();
         MonsterInfo monsterInfo = new MonsterInfo();
-        List<Monster> battleMonsters = new List<Monster>();
+        static List<Monster> battleMonsters = new List<Monster>();
         int[] testPlayer = new int[6] { 1, 10, 5, 100, 1500, 3 };
         string testPlayerName = "testPlayer";
 
@@ -60,7 +60,6 @@ namespace SpartaDungeon_Team_
                 playerHP = testPlayer[3];
                 isfirst = false;
             }
-            
 
             Console.WriteLine();
             Console.WriteLine("[내정보]");
@@ -85,7 +84,6 @@ namespace SpartaDungeon_Team_
         private void BattleSet() // 전투 진행
         {
             int buttleIdx = 0;
-            bool isFirst = false;
         Battle:
             Console.Clear();
             Console.WriteLine("Battle!!");
@@ -96,7 +94,7 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("{0}. Lv.{1} {2} HP{3}", buttleIdx, monsterIdx.level, monsterIdx.name, monsterIdx.hp);
             }
             buttleIdx = 0;
-            Console.WriteLine();                                              
+            Console.WriteLine();
             Console.WriteLine("[내정보]");
             Console.WriteLine("Lv.{0} Chad (전사)", testPlayer[0]);
             Console.WriteLine("HP {0}/{1}", testPlayer[3], playerHP);
@@ -119,10 +117,9 @@ namespace SpartaDungeon_Team_
         private void BattlePhase(int battleMonsterIdx)
         {
             bool notValid = false;
-            int monsterHP; // 공격 전 몬스터 HP
-            int attackMonsterHP; // 공격 후 몬스터 HP
+            int monsterHP; // 해당 전투에서의 몬스터 HP
 
-            Monster buttleMonster = GetButtleMonsterInfo(battleMonsterIdx);
+            Monster buttleMonster = battleMonsters.Find(x => x.index == battleMonsterIdx);
             monsterHP = buttleMonster.hp;
 
             monsterHP = monsterHP - testPlayer[1];
@@ -165,7 +162,7 @@ namespace SpartaDungeon_Team_
 
             foreach (var monsterIdx in battleMonsters) // 살아 있는 몬스터가 있는지 체크
             {
-                if(monsterIdx.isDeath == true && monsterIdx.hp <= 0)
+                if(monsterIdx.isDeath == false && monsterIdx.hp <= 0)
                 {
                     monsterLifeCount--;
                     Monster foundMonster = battleMonsters.Find(x => x.index == monsterIdx.index);
