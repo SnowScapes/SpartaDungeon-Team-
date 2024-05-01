@@ -9,32 +9,32 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
-    public enum MonsterType
-    {
-        None = 0,
-        Slime,
-        Skeleton,
-        Dragon,
+    //public enum MonsterType
+    //{
+    //    None = 0,
+    //    Slime,
+    //    Skeleton,
+    //    Dragon,
 
-        End
-    };
+    //    End
+    //};
 
-    public class Monster
-    {
-        public MonsterType monsterType;
-        public string name;
-        int attackPower;
-        int def;
-        public Monster() { }
-        public Monster(MonsterType monsterType, string name, int attackPower, int def)
-        {
-            this.monsterType = monsterType;
-            this.name = name;
-            this.attackPower = attackPower;
-            this.def = def;
-        }
+    //public class Monster
+    //{
+    //    public MonsterType monsterType;
+    //    public string name;
+    //    int attackPower;
+    //    int def;
+    //    public Monster() { }
+    //    public Monster(MonsterType monsterType, string name, int attackPower, int def)
+    //    {
+    //        this.monsterType = monsterType;
+    //        this.name = name;
+    //        this.attackPower = attackPower;
+    //        this.def = def;
+    //    }
 
-    }
+    //}
 
 
     internal class Stage
