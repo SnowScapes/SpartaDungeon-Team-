@@ -30,6 +30,7 @@ namespace SpartaDungeon_Team_
                 Program.PlayerData.Health = (int)jsonObject["health"];
                 Program.PlayerData.Gold = (int)jsonObject["gold"];
                 Program.PlayerData.Potion = (int)jsonObject["potion"];
+                Stage.SetStageLevel((int)jsonObject["dungenLevel"]);
             }
             else
             {
@@ -48,7 +49,8 @@ namespace SpartaDungeon_Team_
                 new JProperty("defense", Program.PlayerData.Defense),
                 new JProperty("health", Program.PlayerData.Health),
                 new JProperty("gold", Program.PlayerData.Gold),
-                new JProperty("potion", Program.PlayerData.Potion)
+                new JProperty("potion", Program.PlayerData.Potion),
+                new JProperty("dungenLevel",Stage.GetStageLevel())
             );
 
             File.WriteAllText(playerInfoPath, playerData.ToString());
