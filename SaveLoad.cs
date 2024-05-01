@@ -49,9 +49,12 @@ namespace SpartaDungeon_Team_
                     Program.PlayerData.Level = (int)jsonObject["level"];
                     Program.PlayerData.Attack = (float)jsonObject["attack"];
                     Program.PlayerData.Defense = (float)jsonObject["defense"];
+                    Program.PlayerData.Critical = (float)jsonObject["critical"];
+                    Program.PlayerData.Avoid = (float)jsonObject["avoid"];
                     Program.PlayerData.Health = (int)jsonObject["health"];
                     Program.PlayerData.Gold = (int)jsonObject["gold"];
                     Program.PlayerData.Potion = (int)jsonObject["potion"];
+                    Program.PlayerData.Exp = (int)jsonObject["exp"];
                     LoadItemInfo();
                     return true;
                 }
@@ -65,7 +68,7 @@ namespace SpartaDungeon_Team_
 
         public void SavePlayerInfo()
         {
-            /*
+            
             JObject playerData = new JObject(
                 new JProperty("name", Program.PlayerData.Name),
                 new JProperty("job", Program.PlayerData.Job),
@@ -77,7 +80,7 @@ namespace SpartaDungeon_Team_
                 new JProperty("potion", Program.PlayerData.Potion)
             );
 
-            File.WriteAllText(playerInfoPath, playerData.ToString());*/
+            File.WriteAllText("test.json", playerData.ToString());
         }
 
         public void LoadItemInfo()
