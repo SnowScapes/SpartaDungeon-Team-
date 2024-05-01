@@ -57,10 +57,10 @@ namespace SpartaDungeon_Team_
             if(isfirst == true)
             {
                 monsterConunt = monsterLifeCount;
+                playerHP = testPlayer[3];
                 isfirst = false;
             }
-
-            playerHP = testPlayer[3];
+            
 
             Console.WriteLine();
             Console.WriteLine("[내정보]");
@@ -132,6 +132,8 @@ namespace SpartaDungeon_Team_
             Console.Clear();
             Console.WriteLine("Battle!!");
             Console.WriteLine();
+            Console.WriteLine("플레이어 공격!!");
+            Console.WriteLine();
             Console.WriteLine("{0} 의 공격!", testPlayerName); // 플레이어 이름
             Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. (데미지 : {2})", buttleMonster.level, buttleMonster.name, testPlayer[1]);
             Console.WriteLine();
@@ -188,11 +190,14 @@ namespace SpartaDungeon_Team_
                     Console.Clear();
                     Console.WriteLine("Battle!!");
                     Console.WriteLine();
+                    Console.WriteLine("몬스터 공격!!");
+                    Console.WriteLine();
                     Console.WriteLine("Lv.{0} {1} 의 공격!", monster.level, monster.name);
                     Console.WriteLine("{0} 을(를) 맞췄습니다. (데미지 : {1})", testPlayerName, monster.atk);
                     Console.WriteLine();
                     Console.WriteLine("Lv.{0} {1}", testPlayer[0], testPlayerName);
                     Console.WriteLine("HP {0} -> {1}", testPlayer[3], playerHP);
+                    Console.WriteLine();
                     if (notValid)
                     {
                         Console.WriteLine("잘못된 입력 입니다.");
@@ -234,10 +239,13 @@ namespace SpartaDungeon_Team_
             }
             Console.WriteLine("Lv.{0} {1}", testPlayer[0], testPlayerName);
             Console.WriteLine("HP {0} -> {1}", testPlayer[3], playerHP);
+            Console.WriteLine();
             Console.WriteLine("0. 다음");
             Console.WriteLine();
             Console.Write(">>");
             Console.ReadLine();
+            isfirst = true;
+            BattleEntering();
         }
     }
 }
