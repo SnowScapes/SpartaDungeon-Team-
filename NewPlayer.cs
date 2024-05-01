@@ -53,6 +53,7 @@ namespace SpartaDungeon_Team_
                     default: continue;
                 }
                 Program.PlayerData.SetPlayerStat(jobCode);
+                break;
             }
         }
     }

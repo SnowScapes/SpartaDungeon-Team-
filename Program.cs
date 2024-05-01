@@ -15,12 +15,8 @@ namespace SpartaDungeon_Team_
             Status statusScreen = new Status();
             Battle battle = new Battle();
 
+            //인트로 화면 로드
             introScreen.IntroScreen();
-
-            // 플레이어정보(PlayerInfo.Json) 로드
-            // 아이템정보(ItemInfo.Json) 로드
-            saveLoad.LoadPlayerInfo();
-            saveLoad.LoadItemInfo();
 
             // 행동 선택하기
             while(true)
