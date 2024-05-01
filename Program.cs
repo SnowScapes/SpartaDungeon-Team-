@@ -16,7 +16,7 @@ namespace SpartaDungeon_Team_
             Battle battle = new Battle();
 
             //인트로 화면 로드
-            introScreen.IntroScreen();
+            introScreen.IntroScreen(saveLoad);
 
             // 행동 선택하기
             while(true)
