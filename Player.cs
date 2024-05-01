@@ -6,15 +6,24 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
+    enum Jobs
+    {
+        전사 = 1,
+        궁수 = 2,
+        마법사 = 3
+    }
     struct Player
     {
         
         public int Level; // 플레이어 레벨
+        public Jobs Job; // 플레이어 직업
         public string Name; // 플레이어 이름
         public float LevelUpAtk;    // 레벨 업 시 증가할 공격력
         public float LevelUpDef;    // 레벨 업 시 증가할 방어력
         public float Attack; // 플레이어 공격력
         public float Defense; // 플레이어 방어력
+        public float Critical; // 플레이어 치명타
+        public float Avoid; // 플레이어 회피율
         public int Health; // 플레이어 체력
         public int Gold; // 플레이어 골드
         public int Potion; // 플레이어 포션 수
@@ -26,9 +35,10 @@ namespace SpartaDungeon_Team_
         public int MaxLevel;    // 최고 레벨
 
         //초기 플레이어 스탯 설정
-        public void SetPlayerStat()
+        public void SetPlayerStat(int _job)
         {
             Level = 1;
+            Job = (Jobs)_job;
             Health = 100;
             Attack = 10;
             Defense = 5;
