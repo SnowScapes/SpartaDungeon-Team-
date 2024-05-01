@@ -9,7 +9,6 @@ namespace SpartaDungeon_Team_
     internal class Status
     {
         MainScreen MainScreen = new MainScreen();
-        bool NotValid = false;
 
         public int PromptMenuChoice(int min, int max)
         {
@@ -33,7 +32,7 @@ namespace SpartaDungeon_Team_
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine();
             Console.WriteLine("Lv. {0}", Program.PlayerData.Level >= Program.PlayerData.MaxLevel ? $"{Program.PlayerData.Level.ToString("00")} [최고 레벨]" : Program.PlayerData.Level.ToString("00"));
-            Console.WriteLine("{0} (전사)", Program.PlayerData.Name);
+            Console.WriteLine("{0} {1}", Program.PlayerData.Name, Program.PlayerData.Job);
             Console.WriteLine("공격력 : {0}{1}", Program.PlayerData.TotalAtk().ToString(), Program.PlayerData.Weapon.Name != null ? string.Format(" (+{0})", Program.PlayerData.Weapon.Stat) : "");
             Console.WriteLine("방어력 : {0}{1}", Program.PlayerData.TotalDef().ToString(), Program.PlayerData.Armor.Name != null ? string.Format(" (+{0})", Program.PlayerData.Armor.Stat) : "");
             Console.WriteLine("체  력 : " + Program.PlayerData.Health.ToString());
