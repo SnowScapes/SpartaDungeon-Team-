@@ -91,7 +91,15 @@ namespace SpartaDungeon_Team_
             foreach (var monsterIdx in battleMonsters)
             {
                 buttleIdx++;
-                Console.WriteLine("{0}. Lv.{1} {2} HP{3}", buttleIdx, monsterIdx.level, monsterIdx.name, monsterIdx.hp);
+                if(monsterIdx.hp <= 0)
+                {
+                    Console.WriteLine("{0}. Lv.{1} {2} Dead", buttleIdx, monsterIdx.level, monsterIdx.name);
+                }
+                else
+                {
+                    Console.WriteLine("{0}. Lv.{1} {2} HP {3}", buttleIdx, monsterIdx.level, monsterIdx.name, monsterIdx.hp);
+                }
+                
             }
             buttleIdx = 0;
             Console.WriteLine();
@@ -121,7 +129,6 @@ namespace SpartaDungeon_Team_
 
             Monster buttleMonster = battleMonsters.Find(x => x.index == battleMonsterIdx);
             monsterHP = buttleMonster.hp;
-
             monsterHP = monsterHP - testPlayer[1];
 
 
