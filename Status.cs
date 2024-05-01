@@ -42,18 +42,7 @@ namespace SpartaDungeon_Team_
             Console.WriteLine("다음 레벨 업까지 필요한 Exp : {0}", Program.PlayerData.Level >= Program.PlayerData.MaxLevel ? "0" : (Program.PlayerData.RequireExp - Program.PlayerData.Exp).ToString("00"));
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
-            //if (NotValid)     //잘못된 입력일 때 잘못된 입력 출력 및 화면 재출력
-            //{
-            //    Console.WriteLine("잘못된 입력입니다.");
-            //    NotValid = false;
-            //}
-            //Console.WriteLine("원하시는 행동을 입력해주세요 : ");
-            //Console.Write(">>");
-            //if (Console.ReadLine() != "0")
-            //{
-            //    NotValid = true;
-            //    goto notValid;     //notValid 레이블로 이동시키기
-            //}
+
            switch (PromptMenuChoice(0, 0))
             {
                 case 0:
