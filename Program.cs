@@ -12,7 +12,11 @@
             MainScreen mainScreen = new MainScreen();
             Shop shopScreen = new Shop();
             Inventory inventoryScreen = new Inventory();
+
             Stage stageScreen = new Stage();
+
+            Battle battle = new Battle();
+
 
             // 플레이어정보(PlayerInfo.Json) 로드
             // 아이템정보(ItemInfo.Json) 로드
