@@ -27,7 +27,6 @@ namespace SpartaDungeon_Team_
             Console.Clear();
             Player player = new Player();
             player.GetExp();
-            player.CheckLevelUp();
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine();
