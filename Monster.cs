@@ -17,6 +17,13 @@ namespace SpartaDungeon_Team_
         public int evasion; // 회피율
         public int accuracy; // 명중률
         public bool isDeath;
+
+        public void GetDamage(int _damage)
+        {
+            hp -= _damage;
+            if (hp <= 0)
+                isDeath = true;
+        }
     }
 
 

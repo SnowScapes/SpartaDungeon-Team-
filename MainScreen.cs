@@ -12,7 +12,8 @@ namespace SpartaDungeon_Team_
         Dungeon = 2,
         Inventory = 3,
         Shop = 4,
-        Save = 5
+        Save = 5,
+        Load = 6
     }
     internal class MainScreen
     {
@@ -27,7 +28,8 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("2. 전투 시작");
                 Console.WriteLine("3. 인벤토리");
                 Console.WriteLine("4. 상점");
-                Console.WriteLine("5. 저장\n");
+                Console.WriteLine("5. 저장");
+                Console.WriteLine("6. 불러오기\n");
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 Console.Write(">> ");
 
