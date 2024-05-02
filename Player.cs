@@ -14,7 +14,6 @@ namespace SpartaDungeon_Team_
     }
     struct Player
     {
-        
         public int Level; // 플레이어 레벨
         public Jobs Job; // 플레이어 직업
         public string Name; // 플레이어 이름
@@ -34,6 +33,8 @@ namespace SpartaDungeon_Team_
         public int RequireExp;   // 다음레벨까지의 경험치
         public int MaxLevel;    // 최고 레벨
 
+        private static Equipment unEquip = new Equipment(); // 아무 장비도 장착하지 않은 상태
+
         //초기 플레이어 스탯 설정
         public void SetPlayerStat(int _job)
         {
@@ -44,6 +45,8 @@ namespace SpartaDungeon_Team_
             Defense = 5;
             Gold = 1500;
             Potion = 3;
+            Armor = unEquip;
+            Weapon = unEquip;
             Exp = 0;
         }
 
@@ -116,17 +119,22 @@ namespace SpartaDungeon_Team_
             if (_equip.Type == EquipmentType.Armor)
             {
                 if (Armor.Equals(_equip))
-                    Armor = new Equipment();
+                    Armor = unEquip;
                 else
                     Armor = _equip;
             }
             else
             {
                 if (Weapon.Equals(_equip))
-                    Weapon = new Equipment();
+                    Weapon = unEquip;
                 else
                     Weapon = _equip;
             }
+        }
+
+        public Equipment UnEquip()
+        {
+            return unEquip;
         }
     }
 }

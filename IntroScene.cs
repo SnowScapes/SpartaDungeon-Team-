@@ -8,9 +8,12 @@ namespace SpartaDungeon_Team_
 {
     internal class Intro
     {
-        public void IntroScreen()
+        NewPlayer newPlayer = new NewPlayer();
+
+        public void IntroScreen(SaveLoad _saveLoad)
         {
-            while (true)
+            bool gameStart = false;
+            while (!gameStart)
             {
                 Console.Clear();
                 Console.WriteLine("=============================================================================================");
@@ -31,23 +34,11 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("                                +-+-+ +-+-+-+-+ +-+-+-+-+");
                 switch (Console.ReadKey().Key)
                 {
-                    case ConsoleKey.D1: NewGameScreen(); break;
-                    case ConsoleKey.D2: LoadGameScreen(); break;
+                    case ConsoleKey.D1: if (newPlayer.CreatePlayer()) gameStart = true; _saveLoad.LoadItemInfo() ; break;
+                    case ConsoleKey.D2: if(_saveLoad.LoadPlayerInfo()) gameStart = true; break;
                     case ConsoleKey.D3: Environment.Exit(0); break;
                 }
             }
-        }
-
-        void LoadGameScreen()
-        {
-            SaveLoad saveload = new SaveLoad();
-            saveload.LoadPlayerInfo();
-        }
-
-        void NewGameScreen()
-        {
-            NewPlayer createNewPlayer = new NewPlayer();
-            createNewPlayer.CreatePlayer();
         }
     }
 }
