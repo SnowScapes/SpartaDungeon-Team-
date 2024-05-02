@@ -28,7 +28,8 @@ namespace SpartaDungeon_Team_
                     case Screen.Dungeon: battle.BattleEntering(); break; // 전투 시작 화면 메서드 불러오기
                     case Screen.Inventory:inventoryScreen.ShowInventory(); break; // 인벤토리 화면 메서드 불러오기
                     case Screen.Shop: shopScreen.ViewShop(); break; // 상점 화면 메서드 불러오기
-                    case Screen.Save: saveLoad.SavePlayerInfo(); Console.WriteLine("저장이 완료되었습니다."); Thread.Sleep(1000); break; // 저장 메소드 불러오기
+                    case Screen.Save: saveLoad.SavePlayerInfo();break; // 저장 메소드 불러오기
+                    case Screen.Load: saveLoad.LoadPlayerInfo();break; // 저장데이터 로드 메소드 불러오기
                 }
             }
         }

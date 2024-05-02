@@ -11,8 +11,9 @@ namespace SpartaDungeon_Team_
         Armor = 0,
         Weapon = 1
     }
-    struct Equipment
+    class Equipment
     {
+        public int? index; // 장비 착용 상태 저장용 인덱스
         public string Name; // 장비 이름
         public EquipmentType Type; // 장비 타입(방어구, 무기)
         public int Stat; // 장비 스탯
