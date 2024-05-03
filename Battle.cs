@@ -13,12 +13,14 @@ namespace SpartaDungeon_Team_
         MonsterInfo monsterInfo = new MonsterInfo();
         static List<Monster> battleMonsters = new List<Monster>();
 
+        List<Monster> randomMonster = new List<Monster>();
+
         int[] testPlayer = new int[6] { 1, 10, 5, 100, 1500, 3 };
 
         public int monsterNumber = 0;
 
         int playerHP;
-
+       
         int monsterLifeCount = 0;
         int monsterConunt;
 
@@ -55,28 +57,49 @@ namespace SpartaDungeon_Team_
                 {
                     for (int i = 0; i < testMonsterIdx.Length; i++)
                     {
-                        monsterLifeCount++;
+                        
                         battleMonsters.Add(monsterInfo.GetMonsterInfo(testMonsterIdx[i]));
                     }
-                }
-                foreach (var monsterIdx in battleMonsters)
-                {
-                    if (monsterIdx.hp <= 0)
-                    {
-                        Console.WriteLine("Lv.{0} {1} Dead", monsterIdx.level, monsterIdx.name);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Lv.{0} {1} HP{2}", monsterIdx.level, monsterIdx.name, monsterIdx.hp);
-                    }
-                }
-
-                if (isfirst == true)
-                {
-                    monsterConunt = monsterLifeCount;
+                   
                     playerHP = Program.PlayerData.Health;
                     isfirst = false;
                 }
+                else
+                {
+                    battleMonsters.Clear();
+                    //for (int i = 0; i < randomMonster.Count; ++i)
+                    //{
+
+                    //    randomMonster[i].hp = randomMonster[i].level + 15;
+                    //}
+                    for (int i = 0; i < testMonsterIdx.Length; i++)
+                    {
+
+                        battleMonsters.Add(monsterInfo.GetMonsterInfo(testMonsterIdx[i]));
+                    }
+
+                }
+                Random rand = new Random();
+               
+                for (int i = 0; i < monsterNumber; ++i)
+                {
+                    int j = rand.Next(0,3);
+                    battleMonsters[j].hp = battleMonsters[j].level + 15;
+                    if (battleMonsters[j].hp <= 0)
+                    {
+                        Console.WriteLine("Lv.{0} {1} Dead", battleMonsters[j].level, battleMonsters[j].name);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Lv.{0} {1} HP{2}", battleMonsters[j].level, battleMonsters[j].name, battleMonsters[j].hp);
+                    }
+                   
+                    randomMonster.Add(battleMonsters[j]);
+                    monsterLifeCount++;
+                }
+
+                monsterConunt = monsterLifeCount;
+             
 
                 Console.WriteLine();
                 Console.WriteLine("[내정보]");
@@ -108,7 +131,8 @@ namespace SpartaDungeon_Team_
                 Console.Clear();
                 Console.WriteLine("Battle!!");
                 Console.WriteLine();
-                foreach (var monsterIdx in battleMonsters)
+
+                foreach (var monsterIdx in randomMonster)
                 {
                     buttleIdx++;
                     if (monsterIdx.hp <= 0)
@@ -119,7 +143,6 @@ namespace SpartaDungeon_Team_
                     {
                         Console.WriteLine("{0}. Lv.{1} {2} HP {3}", buttleIdx, monsterIdx.level, monsterIdx.name, monsterIdx.hp);
                     }
-
                 }
                 buttleIdx = 0;
                 Console.WriteLine();
@@ -150,7 +173,7 @@ namespace SpartaDungeon_Team_
             bool isAtkP = false;
             
 
-            Monster targetMonster = battleMonsters[battleMonsterIdx];
+            Monster targetMonster = randomMonster[battleMonsterIdx];
             monsterHP = targetMonster.hp;
             int playerAtk = buttlecCalcu.DamageCalcu((int)Program.PlayerData.Critical, (int)Program.PlayerData.TotalAtk());
 
@@ -202,11 +225,10 @@ namespace SpartaDungeon_Team_
 
             if (monsterLifeCount == 0) // 전투 종료 (승리)
             {
-                EndPhase(1);
-                return;
+                EndPhase(1);         
             }
 
-            foreach (var monster in battleMonsters)
+            foreach (var monster in randomMonster)
             {
                 if (monster.isDeath == false)
                 {
@@ -253,6 +275,8 @@ namespace SpartaDungeon_Team_
        
         private void EndPhase(int result)
         {
+            randomMonster.Clear();
+            
             Console.Clear();
             Console.WriteLine("Battle - Result");
             Console.WriteLine();
@@ -279,8 +303,9 @@ namespace SpartaDungeon_Team_
             Console.WriteLine();
             Console.Write(">>");
             Console.ReadLine();
-            isfirst = true;
-            BattleEntering(monsterNumber);
+            BattleEntering(Stage.GetRandomIndex());
+
+
         }
     }
 }

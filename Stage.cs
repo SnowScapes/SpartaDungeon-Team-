@@ -17,7 +17,11 @@ namespace SpartaDungeon_Team_
         static int stageLevel = 1;
         Battle battle = new Battle();
         Random random = new Random();
-
+        static int randomIndex;
+        static public int GetRandomIndex()
+        {
+            return randomIndex;
+        }
         public Stage() { }
         public Stage(int _stageLevel)
         {
@@ -61,6 +65,8 @@ namespace SpartaDungeon_Team_
             //battle.BattleEntering();
 
             int totalMonsters = random.Next(1, 4); // 추가 몬스터의 수를 결정하기 위해 1에서 4 사이의 난수 생성
+            randomIndex = totalMonsters;
+
             int Monstercounter = 0;
             for (int i = 1; i <= totalMonsters; i++)
             {
