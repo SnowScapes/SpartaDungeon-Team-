@@ -14,7 +14,6 @@ namespace SpartaDungeon_Team_
         public static List<Monster> battleMonsters = new List<Monster>();
         int[] testPlayer = new int[6] { 1, 10, 5, 100, 1500, 3 };
         int monsterExp = 0;   // 몬스터 경험치
-
         int playerHP;
         int monsterLifeCount = 0;
         int monsterConunt;
