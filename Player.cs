@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +22,7 @@ namespace SpartaDungeon_Team_
         public float Attack; // 플레이어 공격력
         public float Defense; // 플레이어 방어력
         public float Critical; // 플레이어 치명타
+        public float Accuracy; // 플레이어 명중률
         public float Avoid; // 플레이어 회피율
         public int Health; // 플레이어 체력
         public int Gold; // 플레이어 골드
@@ -50,6 +51,9 @@ namespace SpartaDungeon_Team_
             Exp = 0;
             MaxLevel = 5;
             RequireExp = 10;
+            Critical = 50;
+            Accuracy = 120;
+            Avoid = 50;
         }
 
         public float TotalAtk() // 총 공격력 = 공격력 + 장착 장비 공격력
@@ -64,7 +68,7 @@ namespace SpartaDungeon_Team_
 
         public void CheckLevelUp()    //레벨 업 조건 확인
         {
-           switch (Program.PlayerData.Level)
+            switch (Program.PlayerData.Level)
             {
                 case 1:
                     Program.PlayerData.RequireExp = 10;    // 레벨 1 일때 다음 레벨 필요 경험치 10
