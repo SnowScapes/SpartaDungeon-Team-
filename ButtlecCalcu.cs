@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
-    internal class Buttle2
+    internal class ButtlecCalcu
     {
         public bool Avoid(int accuracy, int evasion, int power)
         {
