@@ -22,6 +22,7 @@ namespace SpartaDungeon_Team_
         public float Attack; // 플레이어 공격력
         public float Defense; // 플레이어 방어력
         public float Critical; // 플레이어 치명타
+        public float Accuracy; // 플레이어 명중률
         public float Avoid; // 플레이어 회피율
         public int Health; // 플레이어 체력
         public int Gold; // 플레이어 골드
@@ -48,6 +49,9 @@ namespace SpartaDungeon_Team_
             Armor = unEquip;
             Weapon = unEquip;
             Exp = 0;
+            Critical = 50;
+            Accuracy = 120;
+            Avoid = 50;
         }
 
         public float TotalAtk() // 총 공격력 = 공격력 + 장착 장비 공격력
