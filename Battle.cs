@@ -108,7 +108,7 @@ namespace SpartaDungeon_Team_
                 buttleIdx = 0;
                 Console.WriteLine();
                 Console.WriteLine("[내정보]");
-                Console.WriteLine("Lv.{0} Chad (전사)", Program.PlayerData.Name);
+                Console.WriteLine("Lv.{0} {1} {2}", Program.PlayerData.Level, Program.PlayerData.Name, Program.PlayerData.Job);
                 Console.WriteLine("HP {0}/{1}", Program.PlayerData.Health, playerHP);
                 Console.WriteLine();
                 Console.WriteLine("0. 취소");
