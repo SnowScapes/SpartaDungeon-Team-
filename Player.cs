@@ -48,6 +48,8 @@ namespace SpartaDungeon_Team_
             Armor = unEquip;
             Weapon = unEquip;
             Exp = 0;
+            MaxLevel = 5;
+            RequireExp = 10;
         }
 
         public float TotalAtk() // 총 공격력 = 공격력 + 장착 장비 공격력
@@ -58,27 +60,6 @@ namespace SpartaDungeon_Team_
         public float TotalDef()  // 총 방어력 = 방어력 + 장착 장비 방어력
         {
             return Program.PlayerData.Defense + Program.PlayerData.Armor.Stat;
-        }
-
-        public void GetExp()    // 경험치 얻기
-        {
-            //Battle battle = new Battle();
-            //Program.PlayerData.GainExp = monster.level;   // 얻은 경험치 == 잡은 몬스터의 레벨
-            //Program.PlayerData.Exp += Program.PlayerData.GainExp; // 현재 경험치에 얻은 경험치 더해주기
-            Program.PlayerData.GainExp = 10;
-            Program.PlayerData.Exp += Program.PlayerData.GainExp;
-            Program.PlayerData.MaxLevel = 5;
-
-            if (Program.PlayerData.Exp >= Program.PlayerData.RequireExp)
-            {
-                LevelUp();
-            }
-
-            if (Program.PlayerData.Level >= Program.PlayerData.MaxLevel)   // 최고 레벨 도달 시
-            {
-                // 현재 경험치 더 이상 안오르게 하기
-                Program.PlayerData.Exp = 0;
-            }
         }
 
         public void CheckLevelUp()    //레벨 업 조건 확인

@@ -13,13 +13,44 @@ namespace SpartaDungeon_Team_
         static List<Monster> battleMonsters = new List<Monster>();
         int[] testPlayer = new int[6] { 1, 10, 5, 100, 1500, 3 };
         string testPlayerName = "testPlayer";
-
+        int monsterExp = 0;   // 몬스터 경험치
         int playerHP;
         int monsterLifeCount = 0;
         int monsterConunt;
         int[] testMonsterIdx = new int[3] { 0, 1, 2 };
         bool isfirst = true;
+        Player Player = new Player();
+        
+        
+        public int MonsterTotalExp()  // 전투 중 잡은 몬스터 레벨의 총합을 monsterExp에 넣어주기
+        {
+            for (int i = 0; i < battleMonsters.Count; i++)
+            {
+                if (battleMonsters[i].isDeath)
+                {
+                    monsterExp += battleMonsters[i].level;
+                }
+                
+            }
+            return monsterExp;
+        }
+        public void GetExp(int _monsterExp)       // 경험치 얻기
+        {
+            Program.PlayerData.GainExp = _monsterExp;
+            Program.PlayerData.Exp += Program.PlayerData.GainExp;
 
+
+            if (Program.PlayerData.Exp >= Program.PlayerData.RequireExp)
+            {
+                Player.LevelUp();
+            }
+
+            if (Program.PlayerData.Level >= Program.PlayerData.MaxLevel)   // 최고 레벨 도달 시
+            {
+                // 현재 경험치 더 이상 안오르게 하기
+                Program.PlayerData.Exp = 0;
+            }
+        }
         private Monster GetButtleMonsterInfo(int monsterIdx)
         {
             return battleMonsters[monsterIdx]; // 리스트에 없는 몬스터 선택 시 체크 필요
@@ -235,6 +266,7 @@ namespace SpartaDungeon_Team_
                     Console.WriteLine();
                     Console.WriteLine("던전에서 몬스터 {0}마리를 잡았습니다.", monsterConunt);
                     Console.WriteLine();
+                    GetExp(MonsterTotalExp());
                     break;
                 case 2:
                     Console.WriteLine("You Lose");
