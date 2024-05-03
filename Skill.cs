@@ -7,6 +7,15 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
+    enum SkillType
+    {
+        SingleAttack,
+        MultiAttack,
+        AttackBuff,
+        DefenceBuff,
+        CriticalBuff,
+        AvoidBuff
+    }
     delegate void skillAction(float _damage);
     interface IBuff
     {
@@ -17,14 +26,16 @@ namespace SpartaDungeon_Team_
     {
         public int GetTargetIndex(int _index);
     }
+
     internal abstract class Skill
     {
-        public int RequireLevel;
-        public string UseJob;
-        public string SkillName;
-        public int RequireMP;
-        public string Description;
-        public int Percentage;
+        public SkillType Type; // 스킬 종류
+        public int RequireLevel; // 사용 요구 레벨
+        public string UseJob; // 사용 가능 직업
+        public string SkillName; // 스킬 이름
+        public int RequireMP; // 필요 MP량
+        public string Description; // 스킬 설명
+        public int Percentage; // 비율 (ex. 스탯 50% 증가, 공격력의 200% 데미지)
 
         public abstract void UseSkill();
     }
@@ -33,6 +44,7 @@ namespace SpartaDungeon_Team_
     {
         public override void UseSkill()
         {
+
         }
 
         public int GetTargetIndex(int _index)
@@ -51,7 +63,7 @@ namespace SpartaDungeon_Team_
                 if (!targetMonster.isDeath)
                     giveDamage += targetMonster.GetDamage;
             }
-            giveDamage?.Invoke(Program.PlayerData.Attack);
+            giveDamage?.Invoke(Program.PlayerData.Attack*(Percentage/100));
         }
     }
 
@@ -78,10 +90,12 @@ namespace SpartaDungeon_Team_
 
         }
     }
+
     internal class CrtBuffSkill : Skill, IBuff
     {
         public void BuffStatus()
         {
+            int originalStatus = (int)Program.PlayerData.Critical;
         }
 
         public override void UseSkill()
@@ -89,6 +103,7 @@ namespace SpartaDungeon_Team_
 
         }
     }
+
     internal class AvdBuffSkill : Skill, IBuff
     {
         public void BuffStatus()
