@@ -67,9 +67,9 @@ namespace SpartaDungeon_Team_
             //배틀 몬스터 정보 불러오기
             if(isfirst == true)
             {
-                monsterLifeCount++;
                 for (int i = 0; i < testMonsterIdx.Length; i++)
                 {
+                    monsterLifeCount++;
                     battleMonsters.Add(monsterInfo.GetMonsterInfo(testMonsterIdx[i]));
                 }
             }
