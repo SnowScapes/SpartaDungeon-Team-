@@ -57,23 +57,25 @@ namespace SpartaDungeon_Team_
 
 
             // 몬스터 등장 여부 결정
-            Console.WriteLine("몬스터가 등장했습니다!"); // 한 마리는 무조건 등장
+           // Console.WriteLine("몬스터가 등장했습니다!"); // 한 마리는 무조건 등장
+            //battle.BattleEntering();
 
             int totalMonsters = random.Next(1, 4); // 추가 몬스터의 수를 결정하기 위해 1에서 4 사이의 난수 생성
-
+            int Monstercounter = 0;
             for (int i = 1; i <= totalMonsters; i++)
             {
                 if (random.NextDouble() < totalSpawnRate) //nextDouble (0.0~1.0)
                 {
-                    Console.WriteLine("몬스터가 등장했습니다!");
+                    Monstercounter++;
                 }
             }
+            battle.BattleEntering(Monstercounter);
 
             // 보스 몬스터 등장 여부 결정
-            if (random.NextDouble() < bossMonsterSpawnRate)
-            {
-                Console.WriteLine("보스 몬스터가 등장했습니다!");
-            }
+            //if (random.NextDouble() < bossMonsterSpawnRate)
+            //{
+            //    Console.WriteLine("보스 몬스터가 등장했습니다!");
+            //}
         }
 
         void StageEnter(int _stageLevel)
@@ -89,12 +91,12 @@ namespace SpartaDungeon_Team_
             }
             else//이겼을때 난이도 올리기 
             {
+                Console.WriteLine("이김");
                 SetStageLevel(_stageLevel + 1);
                 Thread.Sleep(1000);
                 Console.Clear();
                 return;
             }
-
 
         }
         
