@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
+    delegate void skillAction(float _damage);
     interface IBuff
     {
         public void BuffStatus();
@@ -30,7 +31,6 @@ namespace SpartaDungeon_Team_
     
     internal class SingleAttackSkill : Skill, ITargetting
     {
-        delegate void skillAction(int _damage);
         public override void UseSkill()
         {
         }
@@ -43,12 +43,15 @@ namespace SpartaDungeon_Team_
 
     internal class MultiAttackSkill : Skill
     {
-        delegate void skillAction(float _damage);
+        public event skillAction giveDamage;
         public override void UseSkill()
         {
-            skillAction giveDamage;
-            foreach (Monster targetMonsters in Battle.battleMonsters)
-                giveDamage += targetMonsters.GetDamage(Program.PlayerData.Attack);
+            foreach (Monster targetMonster in Battle.battleMonsters)
+            {
+                if (!targetMonster.isDeath)
+                    giveDamage += targetMonster.GetDamage;
+            }
+            giveDamage?.Invoke(Program.PlayerData.Attack);
         }
     }
 
