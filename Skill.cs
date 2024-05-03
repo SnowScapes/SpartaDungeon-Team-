@@ -50,6 +50,7 @@ namespace SpartaDungeon_Team_
         public int Percentage; // 비율 (ex. 스탯 50% 증가, 공격력의 200% 데미지)
     }
     
+    // 단일 공격 스킬
     internal class SingleAttackSkill : Skill, ITargetting, ISkillActive
     {
         int targetIndex;
@@ -65,6 +66,7 @@ namespace SpartaDungeon_Team_
         }
     }
 
+    // 전체 공격 스킬
     internal class MultiAttackSkill : Skill, ISkillActive
     {
         public event skillAction giveDamage;
@@ -79,6 +81,7 @@ namespace SpartaDungeon_Team_
         }
     }
 
+    // 공격력 버프 스킬
     internal class AtkBuffSkill : Skill, IBuff, ISkillActive
     {
         public void BuffStatus()
@@ -92,6 +95,7 @@ namespace SpartaDungeon_Team_
         }
     }
 
+    // 방어력 버프 스킬
     internal class DefBuffSkill : Skill, IBuff, ISkillActive
     {
         public void BuffStatus()
@@ -105,6 +109,7 @@ namespace SpartaDungeon_Team_
         }
     }
 
+    // 크리티컬 버프 스킬
     internal class CrtBuffSkill : Skill, IBuff, ISkillActive
     {
         public void BuffStatus()
@@ -118,6 +123,7 @@ namespace SpartaDungeon_Team_
         }
     }
 
+    // 회피율 버프 스킬
     internal class AvdBuffSkill : Skill, IBuff, ISkillActive
     {
         public void BuffStatus()
