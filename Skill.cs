@@ -16,18 +16,30 @@ namespace SpartaDungeon_Team_
         CriticalBuff,
         AvoidBuff
     }
+
+    // 전체 공격용 Delegate
     delegate void skillAction(float _damage);
+
+    // Buff 스킬용 Interface
     interface IBuff
     {
         public void BuffStatus();
     }
 
+    // 단일 공격, 또는 적군 대상 디버프 스킬용 Interface
     interface ITargetting
     {
-        public int GetTargetIndex(int _index);
+        public void GetTargetIndex(int _index);
     }
 
-    internal abstract class Skill
+    // 스킬 사용 Interface
+    interface ISkillActive
+    {
+        public void UseSkill();
+    }
+
+    // 전체 스킬 관리용 Class
+    internal class Skill
     {
         public SkillType Type; // 스킬 종류
         public int RequireLevel; // 사용 요구 레벨
@@ -36,27 +48,27 @@ namespace SpartaDungeon_Team_
         public int RequireMP; // 필요 MP량
         public string Description; // 스킬 설명
         public int Percentage; // 비율 (ex. 스탯 50% 증가, 공격력의 200% 데미지)
-
-        public abstract void UseSkill();
     }
     
-    internal class SingleAttackSkill : Skill, ITargetting
+    internal class SingleAttackSkill : Skill, ITargetting, ISkillActive
     {
-        public override void UseSkill()
-        {
+        int targetIndex;
 
+        public void UseSkill()
+        {
+            Battle.battleMonsters[targetIndex].GetDamage(Program.PlayerData.Attack * (Percentage / 100));
         }
 
-        public int GetTargetIndex(int _index)
+        public void GetTargetIndex(int _index)
         {
-            return _index;
+            targetIndex = _index;
         }
     }
 
-    internal class MultiAttackSkill : Skill
+    internal class MultiAttackSkill : Skill, ISkillActive
     {
         public event skillAction giveDamage;
-        public override void UseSkill()
+        public void UseSkill()
         {
             foreach (Monster targetMonster in Battle.battleMonsters)
             {
@@ -67,52 +79,55 @@ namespace SpartaDungeon_Team_
         }
     }
 
-    internal class AtkBuffSkill : Skill, IBuff
+    internal class AtkBuffSkill : Skill, IBuff, ISkillActive
     {
         public void BuffStatus()
         {
+            float originalStatus = Program.PlayerData.Attack;
         }
 
-        public override void UseSkill()
+        public void UseSkill()
         {
-
+            BuffStatus();
         }
     }
 
-    internal class DefBuffSkill : Skill, IBuff
+    internal class DefBuffSkill : Skill, IBuff, ISkillActive
     {
         public void BuffStatus()
         {
+            float originalStatus = Program.PlayerData.Defense;
         }
 
-        public override void UseSkill()
+        public void UseSkill()
         {
-
+            BuffStatus();
         }
     }
 
-    internal class CrtBuffSkill : Skill, IBuff
+    internal class CrtBuffSkill : Skill, IBuff, ISkillActive
     {
         public void BuffStatus()
         {
-            int originalStatus = (int)Program.PlayerData.Critical;
+            float originalStatus = Program.PlayerData.Critical;
         }
 
-        public override void UseSkill()
+        public void UseSkill()
         {
-
+            BuffStatus();
         }
     }
 
-    internal class AvdBuffSkill : Skill, IBuff
+    internal class AvdBuffSkill : Skill, IBuff, ISkillActive
     {
         public void BuffStatus()
         {
+            float originalStatus = Program.PlayerData.Avoid;
         }
 
-        public override void UseSkill()
+        public void UseSkill()
         {
-
+            BuffStatus();
         }
     }
 }
