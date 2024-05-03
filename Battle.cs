@@ -38,12 +38,12 @@ namespace SpartaDungeon_Team_
             {
                 for (int i = 0; i < testMonsterIdx.Length; i++)
                 {
+                    monsterLifeCount++;
                     battleMonsters.Add(monsterInfo.GetMonsterInfo(testMonsterIdx[i]));
                 }
             }
             foreach (var monsterIdx in battleMonsters)
             {
-                monsterLifeCount++;
                 if (monsterIdx.hp <= 0)
                 {
                     Console.WriteLine("Lv.{0} {1} Dead", monsterIdx.level, monsterIdx.name);
