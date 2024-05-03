@@ -53,6 +53,8 @@ namespace SpartaDungeon_Team_
                 switch (Console.ReadLine())
                 { 
                     case "0":
+                        Thread.Sleep(500);
+                        Console.Clear();
                         return;
                     default:
                         Console.WriteLine("잘못입력");

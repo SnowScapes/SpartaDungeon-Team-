@@ -15,12 +15,12 @@ namespace SpartaDungeon_Team_
     //internal struct Equipment
     class Equipment
     {
-        public int? index; // 장비 착용 상태 저장용 인덱스
-        public string Name; // 장비 이름
-        public EquipmentType Type; // 장비 타입(방어구, 무기)
-        public int Stat; // 장비 스탯
-        public string Description; // 장비 설명
-        public int Price; // 장비 가격
-        public bool Purchased; // 구매 여부
+        public int? index; // ?�비 착용 ?�태 ?�?�용 ?�덱??
+        public string Name; // ?�비 ?�름
+        public EquipmentType Type; // ?�비 ?�??방어�? 무기)
+        public int Stat; // ?�비 ?�탯
+        public string Description; // ?�비 ?�명
+        public int Price; // ?�비 가�?
+        public bool Purchased; // 구매 ?��?
     }
 }

@@ -8,5 +8,6 @@ namespace SpartaDungeon_Team_
 {
     internal class Skill
     {
+
     }
 }

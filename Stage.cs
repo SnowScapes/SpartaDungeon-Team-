@@ -18,10 +18,7 @@ namespace SpartaDungeon_Team_
         Battle battle = new Battle();
         Random random = new Random();
 
-        public Stage()
-        {
-
-        }
+        public Stage() { }
         public Stage(int _stageLevel)
         {
             stageLevel = _stageLevel;
@@ -118,8 +115,10 @@ namespace SpartaDungeon_Team_
             while (true)
             {
                 Intro();
-                if (!battle.GetIsVictory())
-                    return;
+               
+                //if (!battle.GetIsVictory())
+                //    return;
+
                 switch (Console.ReadLine())
                 {
                     case "1":
