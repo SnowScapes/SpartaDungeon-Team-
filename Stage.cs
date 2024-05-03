@@ -9,40 +9,13 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
-    //public enum MonsterType
-    //{
-    //    None = 0,
-    //    Slime,
-    //    Skeleton,
-    //    Dragon,
-
-    //    End
-    //};
-
-    //public class Monster
-    //{
-    //    public MonsterType monsterType;
-    //    public string name;
-    //    int attackPower;
-    //    int def;
-    //    public Monster() { }
-    //    public Monster(MonsterType monsterType, string name, int attackPower, int def)
-    //    {
-    //        this.monsterType = monsterType;
-    //        this.name = name;
-    //        this.attackPower = attackPower;
-    //        this.def = def;
-    //    }
-
-    //}
-
 
     internal class Stage
     {
 
         bool StageClear = true;
         static int stageLevel = 1;
-
+        Battle battle = new Battle();
         Random random = new Random();
 
         public Stage()
@@ -59,6 +32,7 @@ namespace SpartaDungeon_Team_
 
         void SpawnMonsters(int _stageLevel)
         {
+            //battle.BattleEntering();
             // 기본 몬스터 등장 확률
             double baseMonsterSpawnRate = 0.5;
             // 추가 몬스터 등장 확률
@@ -103,36 +77,30 @@ namespace SpartaDungeon_Team_
             {
                 Console.WriteLine("보스 몬스터가 등장했습니다!");
             }
-
-            //List<Monster> monsterList = new List<Monster>();
-            //for (int i = 0; i <= randomMonsterNumber; i++)
-            //{
-            //    int rd = random.Next(1, (int)MonsterType.End);
-            //    monsterList.Add(new Monster());
-
-            //    monsterList[i].monsterType = (MonsterType)rd;
-            //    monsterList[i].name = monsterList[i].monsterType.ToString();
-            //    monsterList.Add(monsterList[i]);
-            //    Console.WriteLine((i + 1) + "." + monsterList[i].name);
-            //}
         }
 
         void StageEnter(int _stageLevel)
         {
             SpawnMonsters(_stageLevel);
 
-            if (StageClear == false)
-            {
+            if (battle.GetIsVictory() == false)
+            {   
                 Console.WriteLine("패배 하였습니다");
+                Thread.Sleep(1000);
+                Console.Clear();
                 return;
             }
             else//이겼을때 난이도 올리기 
             {
                 SetStageLevel(_stageLevel + 1);
+                Thread.Sleep(1000);
+                Console.Clear();
+                return;
             }
 
 
         }
+        
         void Intro()
         {
             Console.WriteLine("\n스파르타 던전에 오신 여러분 환영합니다.");
@@ -142,19 +110,22 @@ namespace SpartaDungeon_Team_
             Console.WriteLine("3.돌아가기\n");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">>");
-
         }
+
         public void MainStage()
         {
             Console.Clear();
             while (true)
             {
                 Intro();
+                if (!battle.GetIsVictory())
+                    return;
                 switch (Console.ReadLine())
                 {
                     case "1":
                         Console.Clear();
-                        //상태 보기
+                        Status status =new Status();
+                        status.StatusMenu();
                         break;
 
                     case "2":

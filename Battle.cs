@@ -11,14 +11,23 @@ namespace SpartaDungeon_Team_
         Program program = new Program();
         MonsterInfo monsterInfo = new MonsterInfo();
         static List<Monster> battleMonsters = new List<Monster>();
+
         int[] testPlayer = new int[6] { 1, 10, 5, 100, 1500, 3 };
         string testPlayerName = "testPlayer";
+
 
         int playerHP;
         int monsterLifeCount = 0;
         int monsterConunt;
         int[] testMonsterIdx = new int[3] { 0, 1, 2 };
         bool isfirst = true;
+
+        bool isVictory = false;
+
+        public bool GetIsVictory()
+        {
+            return isVictory;
+        }
 
         private Monster GetButtleMonsterInfo(int monsterIdx)
         {
@@ -41,9 +50,11 @@ namespace SpartaDungeon_Team_
                     battleMonsters.Add(monsterInfo.GetMonsterInfo(testMonsterIdx[i]));
                 }
             }
+
             foreach (var monsterIdx in battleMonsters)
             {
                 monsterLifeCount++;
+
                 if (monsterIdx.hp <= 0)
                 {
                     Console.WriteLine("Lv.{0} {1} Dead", monsterIdx.level, monsterIdx.name);
@@ -66,6 +77,7 @@ namespace SpartaDungeon_Team_
             Console.WriteLine("Lv.{0} Chad (전사)", testPlayer[0]);
             Console.WriteLine("HP {0}/{1}", testPlayer[3], playerHP);
             Console.WriteLine();
+
             if (notValid)
             {
                 Console.WriteLine("잘못된 입력 입니다.");
@@ -101,6 +113,7 @@ namespace SpartaDungeon_Team_
                 }
                 
             }
+
             buttleIdx = 0;
             Console.WriteLine();
             Console.WriteLine("[내정보]");
@@ -111,6 +124,7 @@ namespace SpartaDungeon_Team_
             Console.WriteLine();
             Console.WriteLine("대상을 선택해주세요.");
             Console.Write(">>");
+
             int inputMenu = int.Parse(Console.ReadLine());
             switch (inputMenu)
             {
@@ -223,6 +237,7 @@ namespace SpartaDungeon_Team_
             }
         }
 
+       
         private void EndPhase(int result)
         {
             Console.Clear();
@@ -235,12 +250,16 @@ namespace SpartaDungeon_Team_
                     Console.WriteLine();
                     Console.WriteLine("던전에서 몬스터 {0}마리를 잡았습니다.", monsterConunt);
                     Console.WriteLine();
+                    isVictory = true;
+                    
                     break;
                 case 2:
                     Console.WriteLine("You Lose");
                     Console.WriteLine();
+                    isVictory = false;
                     break;
             }
+
             Console.WriteLine("Lv.{0} {1}", testPlayer[0], testPlayerName);
             Console.WriteLine("HP {0} -> {1}", testPlayer[3], playerHP);
             Console.WriteLine();
