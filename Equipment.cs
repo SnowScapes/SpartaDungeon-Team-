@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +12,10 @@ namespace SpartaDungeon_Team_
         Weapon = 1
     }
 
-    internal struct Equipment
+    //internal struct Equipment
+    class Equipment
     {
+        public int? index; // 장비 착용 상태 저장용 인덱스
         public string Name; // 장비 이름
         public EquipmentType Type; // 장비 타입(방어구, 무기)
         public int Stat; // 장비 스탯
