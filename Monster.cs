@@ -18,9 +18,9 @@ namespace SpartaDungeon_Team_
         public int accuracy; // 명중률
         public bool isDeath;
 
-        public void GetDamage(int _damage)
+        public void GetDamage(float _damage)
         {
-            hp -= _damage;
+            hp -= (int)_damage;
             if (hp <= 0)
                 isDeath = true;
         }
