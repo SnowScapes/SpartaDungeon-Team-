@@ -10,7 +10,7 @@ namespace SpartaDungeon_Team_
     {
         public bool Avoid(int accuracy, int evasion)
         {
-            int ea = evasion - accuracy;
+            int ea = accuracy - evasion;
             Random accuracyRand = new Random();
 
             if (ea <= 0)

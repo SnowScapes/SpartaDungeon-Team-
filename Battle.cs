@@ -121,7 +121,6 @@ namespace SpartaDungeon_Team_
                     case 0: return;
                     default: BattlePhase(inputMenu - 1); break;
                 }
-
             }
            
              //없는 몬스터 판단하는 부분 필요
@@ -144,6 +143,10 @@ namespace SpartaDungeon_Team_
             {
                 monsterHP -= playerAtk;
                 isAtkP = true;
+            }
+            else
+            {
+                playerAtk = 0;
             }
             
 
@@ -170,19 +173,22 @@ namespace SpartaDungeon_Team_
             else
                 Console.WriteLine("HP {0} -> {1}\n", targetMonster.hp, monsterHP); // 공격력 만큼 뺀 채력
 
-            targetMonster.GetDamage(testPlayer[1]);
+            targetMonster.GetDamage(playerAtk);
 
             Console.WriteLine("아무 키나 눌러 진행");
             Console.ReadKey();
 
-            foreach (var monster in battleMonsters) // 살아 있는 몬스터가 있는지 체크
+            if (targetMonster.isDeath == false && targetMonster.hp <= 0)
             {
-                if (monster.isDeath)
-                    monsterLifeCount--;
+                monsterLifeCount--;
+                targetMonster.SetDeath();
             }
 
             if (monsterLifeCount == 0) // 전투 종료 (승리)
+            {
                 EndPhase(1);
+                return;
+            }
 
             foreach (var monster in battleMonsters)
             {
