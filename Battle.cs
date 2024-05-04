@@ -285,6 +285,7 @@ namespace SpartaDungeon_Team_
             }
             Console.WriteLine("Lv.{0} {1}", Program.PlayerData.Level, Program.PlayerData.Name);
             Console.WriteLine("HP {0} -> {1}", Program.PlayerData.Health, playerHP);
+            Console.WriteLine("{0} 의 경험치를 얻었습니다!", monsterExp);  // 경험치 얻은거 얼마인지 출력해주기
             Console.WriteLine();
             Console.WriteLine("0. 다음");
             Console.WriteLine();
