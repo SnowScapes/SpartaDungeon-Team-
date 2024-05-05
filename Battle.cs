@@ -12,18 +12,12 @@ namespace SpartaDungeon_Team_
         ButtlecCalcu buttlecCalcu = new ButtlecCalcu();
         MonsterInfo monsterInfo = new MonsterInfo();
         public static List<Monster> battleMonsters = new List<Monster>();
-        int[] testPlayer = new int[6] { 1, 10, 5, 100, 1500, 3 };
 
         int playerHP;
         int monsterLifeCount = 0;
         int monsterConunt;
         int[] testMonsterIdx = new int[3] { 0, 1, 2 };
         bool isfirst = true;
-
-        private Monster GetButtleMonsterInfo(int monsterIdx)
-        {
-            return battleMonsters[monsterIdx]; // 리스트에 없는 몬스터 선택 시 체크 필요
-        }
 
         public void BattleEntering() // 전투 메뉴 입장
         {
@@ -42,6 +36,10 @@ namespace SpartaDungeon_Team_
                         monsterLifeCount++;
                         battleMonsters.Add(monsterInfo.GetMonsterInfo(testMonsterIdx[i]));
                     }
+
+                    monsterConunt = monsterLifeCount;
+                    playerHP = Program.PlayerData.Health;
+                    isfirst = false;
                 }
                 foreach (var monsterIdx in battleMonsters)
                 {
@@ -55,16 +53,9 @@ namespace SpartaDungeon_Team_
                     }
                 }
 
-                if (isfirst == true)
-                {
-                    monsterConunt = monsterLifeCount;
-                    playerHP = Program.PlayerData.Health;
-                    isfirst = false;
-                }
-
                 Console.WriteLine();
                 Console.WriteLine("[내정보]");
-                Console.WriteLine("Lv.{0} Chad (전사)", Program.PlayerData.Name);
+                Console.WriteLine("Lv.{0} {1} ({2})", Program.PlayerData.Level, Program.PlayerData.Name, Program.PlayerData.Job);
                 Console.WriteLine("HP {0}/{1}", Program.PlayerData.Health, playerHP);
                 Console.WriteLine();
                 if (notValid)
@@ -108,7 +99,7 @@ namespace SpartaDungeon_Team_
                 buttleIdx = 0;
                 Console.WriteLine();
                 Console.WriteLine("[내정보]");
-                Console.WriteLine("Lv.{0} Chad (전사)", Program.PlayerData.Name);
+                Console.WriteLine("Lv.{0} {1} {2}", Program.PlayerData.Level, Program.PlayerData.Name, Program.PlayerData.Job);
                 Console.WriteLine("HP {0}/{1}", Program.PlayerData.Health, playerHP);
                 Console.WriteLine();
                 Console.WriteLine("0. 취소");
@@ -259,7 +250,6 @@ namespace SpartaDungeon_Team_
             Console.WriteLine();
             Console.Write(">>");
             Console.ReadLine();
-            isfirst = true;
             BattleEntering();
         }
     }
