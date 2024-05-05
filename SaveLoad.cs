@@ -165,5 +165,10 @@ namespace SpartaDungeon_Team_
             string jsonText = JsonConvert.SerializeObject(Shop.Equipments);
             File.WriteAllText(itemInfoPath, jsonText);
         }
+
+        public void SkillList()
+        {
+
+        }
     }
 }

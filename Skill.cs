@@ -14,7 +14,8 @@ namespace SpartaDungeon_Team_
         AttackBuff,
         DefenceBuff,
         CriticalBuff,
-        AvoidBuff
+        AvoidBuff,
+        AccuracyBuff
     }
 
     // 전체 공격용 Delegate
@@ -23,7 +24,8 @@ namespace SpartaDungeon_Team_
     // Buff 스킬용 Interface
     interface IBuff
     {
-        public void BuffStatus();
+        public void BuffStatus(ref float _originStatus);
+        public void BuffEnd(ref float _originStatus);
     }
 
     // 단일 공격, 또는 적군 대상 디버프 스킬용 Interface
@@ -43,7 +45,7 @@ namespace SpartaDungeon_Team_
     {
         public SkillType Type; // 스킬 종류
         public int RequireLevel; // 사용 요구 레벨
-        public string UseJob; // 사용 가능 직업
+        public Jobs UseJob; // 사용 가능 직업
         public string SkillName; // 스킬 이름
         public int RequireMP; // 필요 MP량
         public string Description; // 스킬 설명
@@ -82,58 +84,36 @@ namespace SpartaDungeon_Team_
     }
 
     // 공격력 버프 스킬
-    internal class AtkBuffSkill : Skill, IBuff, ISkillActive
+    internal class BuffSkill : Skill, IBuff, ISkillActive
     {
-        public void BuffStatus()
+        // 스킬 타입에 따라 버프 대상 스탯 참조 return
+        ref float getBuffTargetStat()
         {
-            float originalStatus = Program.PlayerData.Attack;
+            switch(Type)
+            {
+                case SkillType.AttackBuff: return ref Program.PlayerData.Attack;
+                case SkillType.DefenceBuff: return ref Program.PlayerData.Defense;
+                case SkillType.CriticalBuff: return ref Program.PlayerData.Critical;
+                case SkillType.AvoidBuff: return ref Program.PlayerData.Avoid;
+                default: return ref Program.PlayerData.Accuracy;
+            }
+        }
+
+        float originalStatus;
+        public void BuffEnd(ref float _originStatus)
+        {
+            _originStatus = originalStatus;
+        }
+
+        public void BuffStatus(ref float _originStatus)
+        {
+            originalStatus = _originStatus;
+            _originStatus += Percentage;
         }
 
         public void UseSkill()
         {
-            BuffStatus();
-        }
-    }
-
-    // 방어력 버프 스킬
-    internal class DefBuffSkill : Skill, IBuff, ISkillActive
-    {
-        public void BuffStatus()
-        {
-            float originalStatus = Program.PlayerData.Defense;
-        }
-
-        public void UseSkill()
-        {
-            BuffStatus();
-        }
-    }
-
-    // 크리티컬 버프 스킬
-    internal class CrtBuffSkill : Skill, IBuff, ISkillActive
-    {
-        public void BuffStatus()
-        {
-            float originalStatus = Program.PlayerData.Critical;
-        }
-
-        public void UseSkill()
-        {
-            BuffStatus();
-        }
-    }
-
-    // 회피율 버프 스킬
-    internal class AvdBuffSkill : Skill, IBuff, ISkillActive
-    {
-        public void BuffStatus()
-        {
-            float originalStatus = Program.PlayerData.Avoid;
-        }
-
-        public void UseSkill()
-        {
-            BuffStatus();
+            BuffStatus(ref getBuffTargetStat());
         }
     }
 }
