@@ -94,7 +94,7 @@ namespace SpartaDungeon_Team_
 
                 Console.WriteLine();
                 Console.WriteLine("[내정보]");
-                Console.WriteLine("Lv.{0} Chad (전사)", Program.PlayerData.Name);
+                Console.WriteLine("Lv.{0} {1} ({2})", Program.PlayerData.Level, Program.PlayerData.Name, Program.PlayerData.Job);
                 Console.WriteLine("HP {0}/{1}", Program.PlayerData.Health, playerHP);
                 Console.WriteLine();
 
@@ -105,9 +105,9 @@ namespace SpartaDungeon_Team_
                 }
 
                 Console.WriteLine("1. 공격");
-                Console.Write(">>");
-                int inputMeum = int.Parse(Console.ReadLine());
-                switch (inputMeum)
+                Console.WriteLine("2. 스킬");
+
+                switch (Console.ReadKey().Key)
                 {
                     case 1: 
                         BattleSet();
@@ -174,7 +174,7 @@ namespace SpartaDungeon_Team_
         }
 
 
-        private void BattlePhase(int battleMonsterIdx)
+        private void PlayerPhase(int battleMonsterIdx)
         {
 
 
@@ -244,7 +244,8 @@ namespace SpartaDungeon_Team_
                     int monsterAkt = buttlecCalcu.DamageCalcu(0, monster.attack);
                     bool isAtkM = false;
 
-                    if (buttlecCalcu.Avoid(targetMonster.accuracy, (int)Program.PlayerData.Avoid) == true)
+                    // 모든 몬스터가 아닌 targetMonster의 accuracy만을 반영해서 수정함
+                    if (buttlecCalcu.Avoid(monster.accuracy, (int)Program.PlayerData.Avoid) == true)
                     {
                         playerHP = playerHP - monsterAkt;
                         isAtkM = true;
@@ -306,6 +307,8 @@ namespace SpartaDungeon_Team_
                     break;
                 case 2:
                     Console.WriteLine("You Lose");
+                    Console.WriteLine("Lv.{0} {1}", Program.PlayerData.Level, Program.PlayerData.Name);
+                    Console.WriteLine("HP {0} -> {1}", Program.PlayerData.Health, playerHP);
                     Console.WriteLine();
                     isVictory = false;
                     break;

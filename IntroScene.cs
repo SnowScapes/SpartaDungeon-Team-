@@ -34,7 +34,7 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("                                +-+-+ +-+-+-+-+ +-+-+-+-+");
                 switch (Console.ReadKey().Key)
                 {
-                    case ConsoleKey.D1: if (newPlayer.CreatePlayer()) gameStart = true; _saveLoad.LoadItemInfo() ; break;
+                    case ConsoleKey.D1: if (newPlayer.CreatePlayer()) gameStart = true; _saveLoad.LoadItemInfo() ; _saveLoad.LoadSkillList(); break;
                     case ConsoleKey.D2: if(_saveLoad.LoadPlayerInfo()) gameStart = true; break;
                     case ConsoleKey.D3: Environment.Exit(0); break;
                 }
