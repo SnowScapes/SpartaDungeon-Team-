@@ -24,7 +24,8 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("{0} {1}", Program.PlayerData.Name, Program.PlayerData.Job);
                 Console.WriteLine("공격력 : {0}{1}", Program.PlayerData.TotalAtk().ToString(), Program.PlayerData.Weapon.Name != null ? string.Format(" (+{0})", Program.PlayerData.Weapon.Stat) : "");
                 Console.WriteLine("방어력 : {0}{1}", Program.PlayerData.TotalDef().ToString(), Program.PlayerData.Armor.Name != null ? string.Format(" (+{0})", Program.PlayerData.Armor.Stat) : "");
-                Console.WriteLine("체  력 : " + Program.PlayerData.Health.ToString());
+                Console.WriteLine("체  력 : {0}", Program.PlayerData.Health.ToString());
+                Console.WriteLine("마  력 : {0}", Program.PlayerData.Mana.ToString());
                 Console.WriteLine("Gold : {0} G", Program.PlayerData.Gold.ToString());
                 Console.WriteLine("Exp : {0}", Program.PlayerData.Exp.ToString());
                 Console.WriteLine("다음 레벨 업까지 필요한 Exp : {0}", Program.PlayerData.Level >= Program.PlayerData.MaxLevel ? "0" : (Program.PlayerData.RequireExp - Program.PlayerData.Exp).ToString());

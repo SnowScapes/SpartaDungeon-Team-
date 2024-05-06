@@ -34,6 +34,7 @@ namespace SpartaDungeon_Team_
         public int RequireExp;   // 다음레벨까지의 경험치
         public int MaxLevel;    // 최고 레벨
         public List<Skill> SkillList;   // 플레이어 스킬 리스트
+        public int Mana;        //플레이어 마나
 
         private static Equipment unEquip = new Equipment(); // 아무 장비도 장착하지 않은 상태
 
@@ -50,7 +51,7 @@ namespace SpartaDungeon_Team_
             Armor = unEquip;
             Weapon = unEquip;
             Exp = 0;
-
+            Mana = 50;
             MaxLevel = 5;
             RequireExp = 10;
             Critical = 50;
