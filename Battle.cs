@@ -10,21 +10,27 @@ namespace SpartaDungeon_Team_
     {
         Program program = new Program();
         ButtlecCalcu buttlecCalcu = new ButtlecCalcu();
-        MonsterInfo monsterInfo = new MonsterInfo();
-        static List<Monster> battleMonsters = new List<Monster>();
+        Random rand = new Random();
+        
+        //monster init()
+        Minion minion = new Minion();
+        VoidBug bug = new VoidBug();
+        CannonMinion CannonMinion = new CannonMinion();
+        
 
-        List<Monster> randomMonster = new List<Monster>();
+        //test
+        List<NewMonster> newMonster = new List<NewMonster>();
 
         int[] testPlayer = new int[6] { 1, 10, 5, 100, 1500, 3 };
 
-        public int monsterNumber = 0;
+        public int monsterNumber = 1;
 
         int playerHP;
        
         int monsterLifeCount = 0;
-        int monsterConunt;
+        int monsterConunt=0;
 
-        int[] testMonsterIdx = new int[3] { 0, 1, 2 };
+       
         
         bool isfirst = true;
 
@@ -35,68 +41,53 @@ namespace SpartaDungeon_Team_
             return isVictory;
         }
 
-        private Monster GetButtleMonsterInfo(int monsterIdx)
-        {
-            return battleMonsters[monsterIdx]; // 리스트에 없는 몬스터 선택 시 체크 필요
-        }
-
-
-        //이부분에서 stage 에 있는 정볼르 받아와야한다 .
+    
         public void BattleEntering(int _monsterNumber) // 전투 메뉴 입장 
         {
             monsterNumber = _monsterNumber;
             bool notValid = false;
+           
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("Battle!!");
                 Console.WriteLine();
 
-                //배틀 몬스터 정보 불러오기
-                if (isfirst == true)
+                playerHP = Program.PlayerData.Health;
+
+                for (int i = 0; i <= _monsterNumber; i++)
                 {
-                    for (int i = 0; i < testMonsterIdx.Length; i++)
+                    int randnum = rand.Next(1, (int)MonsterType.End);
+                    switch (randnum)
                     {
-                        
-                        battleMonsters.Add(monsterInfo.GetMonsterInfo(testMonsterIdx[i]));
+                        case 1:
+                            newMonster.Add(minion.Clone(Stage.GetStageLevel()));                       
+                            break;
+                        case 2:
+                            newMonster.Add(bug.Clone(Stage.GetStageLevel()));
+                            break;
+                        case 3:
+                            newMonster.Add(CannonMinion.Clone(Stage.GetStageLevel()));
+                            break;
                     }
-                   
-                    playerHP = Program.PlayerData.Health;
-                    isfirst = false;
+                    monsterLifeCount++;
                 }
-                else
-                {
-                    battleMonsters.Clear();
-                    //for (int i = 0; i < randomMonster.Count; ++i)
-                    //{
 
-                    //    randomMonster[i].hp = randomMonster[i].level + 15;
-                    //}
-                    for (int i = 0; i < testMonsterIdx.Length; i++)
-                    {
-
-                        battleMonsters.Add(monsterInfo.GetMonsterInfo(testMonsterIdx[i]));
-                    }
-
-                }
-                Random rand = new Random();
                
-                for (int i = 0; i < monsterNumber; ++i)
+                foreach(var item in newMonster)
                 {
-                    int j = rand.Next(0,3);
-                    battleMonsters[j].hp = battleMonsters[j].level + 15;
-                    if (battleMonsters[j].hp <= 0)
+                    if (item.IsDead())
                     {
-                        Console.WriteLine("Lv.{0} {1} Dead", battleMonsters[j].level, battleMonsters[j].name);
+                        Console.WriteLine("Lv.{0} {1} Dead", item.GetLevel(),item.GetName());
                     }
                     else
                     {
-                        Console.WriteLine("Lv.{0} {1} HP{2}", battleMonsters[j].level, battleMonsters[j].name, battleMonsters[j].hp);
+                        Console.WriteLine("Lv.{0} {1} HP{2}", item.GetLevel(), item.GetName(),item.GetHp());
                     }
-                   
-                    randomMonster.Add(battleMonsters[j]);
-                    monsterLifeCount++;
+                    
                 }
+
+
 
                 monsterConunt = monsterLifeCount;
              
@@ -106,18 +97,24 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("Lv.{0} Chad (전사)", Program.PlayerData.Name);
                 Console.WriteLine("HP {0}/{1}", Program.PlayerData.Health, playerHP);
                 Console.WriteLine();
+
                 if (notValid)
                 {
                     Console.WriteLine("잘못된 입력 입니다.");
                     notValid = false;
                 }
+
                 Console.WriteLine("1. 공격");
                 Console.Write(">>");
                 int inputMeum = int.Parse(Console.ReadLine());
                 switch (inputMeum)
                 {
-                    case 1: BattleSet(); return;
-                    default: notValid = true; break;
+                    case 1: 
+                        BattleSet();
+                        break;
+                    default: 
+                        notValid = true; 
+                        break;
                 }
             }
             
@@ -125,26 +122,30 @@ namespace SpartaDungeon_Team_
 
         private void BattleSet() // 전투 진행
         {
-            int buttleIdx = 0;
+            
+            int battleIdx = 0;
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("Battle!!");
                 Console.WriteLine();
 
-                foreach (var monsterIdx in randomMonster)
+
+                foreach(var item in newMonster)
                 {
-                    buttleIdx++;
-                    if (monsterIdx.hp <= 0)
+                    battleIdx++;
+                    if (item.IsDead())
                     {
-                        Console.WriteLine("{0}. Lv.{1} {2} Dead", buttleIdx, monsterIdx.level, monsterIdx.name);
+                        Console.WriteLine("{0}. Lv.{1} {2} Dead", battleIdx, item.GetLevel(),item.GetName());
                     }
                     else
                     {
-                        Console.WriteLine("{0}. Lv.{1} {2} HP {3}", buttleIdx, monsterIdx.level, monsterIdx.name, monsterIdx.hp);
+                        Console.WriteLine("{0}. Lv.{1} {2} HP {3}", battleIdx, item.GetLevel(), item.GetName(),item.GetHp());
                     }
                 }
-                buttleIdx = 0;
+
+                battleIdx = 0;
+
                 Console.WriteLine();
                 Console.WriteLine("[내정보]");
                 Console.WriteLine("Lv.{0} Chad (전사)", Program.PlayerData.Name);
@@ -154,33 +155,41 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine();
                 Console.WriteLine("대상을 선택해주세요.");
                 Console.Write(">>");
+            
+         
                 int inputMenu = int.Parse(Console.ReadLine());
+                
                 switch (inputMenu)
                 {
-                    case 0: return;
-                    default: BattlePhase(inputMenu - 1); break;
+                    case 0:
+                        newMonster.Clear();
+                        break ;
+                    default:
+                        BattlePhase(inputMenu - 1); 
+                        break;
                 }
             }
-           
-             //없는 몬스터 판단하는 부분 필요
+
             
         }
 
 
         private void BattlePhase(int battleMonsterIdx)
         {
-            int monsterHP; // 해당 전투에서의 몬스터 HP
-            bool isAtkP = false;
-            
 
-            Monster targetMonster = randomMonster[battleMonsterIdx];
-            monsterHP = targetMonster.hp;
+
+            bool isAtkP = false;
+
+            NewMonster targetMonster = newMonster[battleMonsterIdx];
+            int monsterHP = targetMonster.GetHp();  // 맞기전 몬스터 체력 받을 변수
+
             int playerAtk = buttlecCalcu.DamageCalcu((int)Program.PlayerData.Critical, (int)Program.PlayerData.TotalAtk());
 
             
             if (buttlecCalcu.Avoid((int)Program.PlayerData.Accuracy, targetMonster.avoid) == true)
             {
-                monsterHP -= playerAtk;
+                //monsterHP -= playerAtk;
+                targetMonster.OnDamaged(playerAtk);
                 isAtkP = true;
             }
             else
@@ -197,42 +206,42 @@ namespace SpartaDungeon_Team_
             Console.WriteLine("{0} 의 공격!", Program.PlayerData.Name); // 플레이어 이름
             if(isAtkP == true)
             {
-                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. (데미지 : {2})", targetMonster.level, targetMonster.name, playerAtk);
+                Console.WriteLine("Lv.{0} {1} 을(를) 맞췄습니다. (데미지 : {2})", targetMonster.GetLevel(), targetMonster.GetName(), playerAtk);
             }
             else
             {
                 Console.WriteLine("빗나감!");
             }
             Console.WriteLine();
-            Console.WriteLine("Lv.{0} {1}", targetMonster.level, targetMonster.name); //몬스터 레벨, 이름
+            Console.WriteLine("Lv.{0} {1}", targetMonster.GetLevel(), targetMonster.GetName()) ; //몬스터 레벨, 이름
 
             // 공격 결과 출력
-            if (monsterHP <= 0)
-                Console.WriteLine("HP {0} -> Dead", targetMonster.hp);
+            if (targetMonster.IsDead())
+                Console.WriteLine("HP {0} -> Dead", targetMonster.GetHp());
             else
-                Console.WriteLine("HP {0} -> {1}\n", targetMonster.hp, monsterHP); // 공격력 만큼 뺀 채력
+                Console.WriteLine("HP {0} -> {1}\n", monsterHP, targetMonster.GetHp()); // 공격력 만큼 뺀 채력
 
-            targetMonster.GetDamage(playerAtk);
+            //targetMonster.GetDamage(playerAtk);
 
             Console.WriteLine("아무 키나 눌러 진행");
             Console.ReadKey();
 
-            if (targetMonster.isDeath == false && targetMonster.hp <= 0)
+            if (targetMonster.IsDead())
             {
                 monsterLifeCount--;
-                targetMonster.SetDeath();
             }
 
             if (monsterLifeCount == 0) // 전투 종료 (승리)
             {
-                EndPhase(1);         
+                EndPhase(1);
+                
             }
 
-            foreach (var monster in randomMonster)
+            foreach (var monster in newMonster)
             {
-                if (monster.isDeath == false)
+                if (!monster.IsDead())
                 {
-                    int monsterAkt = buttlecCalcu.DamageCalcu(0, monster.atk);
+                    int monsterAkt = buttlecCalcu.DamageCalcu(0, monster.attack);
                     bool isAtkM = false;
 
                     if (buttlecCalcu.Avoid(targetMonster.accuracy, (int)Program.PlayerData.Avoid) == true)
@@ -241,16 +250,18 @@ namespace SpartaDungeon_Team_
                         isAtkM = true;
                     }
 
-                    if (playerHP < 0)
+                    if (playerHP <= 0)
                         playerHP = 0;
+
+                   
 
                     Console.Clear();
                     Console.WriteLine("Battle!!");
                     Console.WriteLine();
                     Console.WriteLine("몬스터 공격!!");
                     Console.WriteLine();
-                    Console.WriteLine("Lv.{0} {1} 의 공격!", monster.level, monster.name);
-                    if(isAtkM == true)
+                    Console.WriteLine("Lv.{0} {1} 의 공격!", monster.GetLevel(), monster.GetName());
+                    if (isAtkM == true)
                     {
                         Console.WriteLine("{0} 을(를) 맞췄습니다. (데미지 : {1})", Program.PlayerData.Name, monsterAkt);
                     }
@@ -258,6 +269,7 @@ namespace SpartaDungeon_Team_
                     {
                         Console.WriteLine("빗나감!");
                     }
+
                     Console.WriteLine();
                     Console.WriteLine("Lv.{0} {1}", Program.PlayerData.Level, Program.PlayerData.Name);
                     Console.WriteLine("HP {0} -> {1}", Program.PlayerData.Health, playerHP);
@@ -267,15 +279,18 @@ namespace SpartaDungeon_Team_
                     Console.ReadKey();
 
                     if (playerHP == 0)
+                    {
                         EndPhase(2);
+                        
+                    }
                 }
             }
         }
 
-       
+
         private void EndPhase(int result)
         {
-            randomMonster.Clear();
+            
             
             Console.Clear();
             Console.WriteLine("Battle - Result");
@@ -288,7 +303,6 @@ namespace SpartaDungeon_Team_
                     Console.WriteLine("던전에서 몬스터 {0}마리를 잡았습니다.", monsterConunt);
                     Console.WriteLine();
                     isVictory = true;
-                    
                     break;
                 case 2:
                     Console.WriteLine("You Lose");
@@ -296,16 +310,41 @@ namespace SpartaDungeon_Team_
                     isVictory = false;
                     break;
             }
+
             Console.WriteLine("Lv.{0} {1}", Program.PlayerData.Level, Program.PlayerData.Name);
             Console.WriteLine("HP {0} -> {1}", Program.PlayerData.Health, playerHP);
             Console.WriteLine();
             Console.WriteLine("0. 다음");
             Console.WriteLine();
             Console.Write(">>");
-            Console.ReadLine();
-            BattleEntering(Stage.GetRandomIndex());
 
-
+            
+            switch (Console.ReadLine())
+            {
+                case "0":
+                    Stage stage=new Stage();
+                    newMonster.Clear();
+                    if (isVictory == false)
+                    {
+                        Console.WriteLine("패배 하였습니다");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        stage.MainStage();
+                    
+                    }
+                    else//이겼을때 난이도 올리기 
+                    {
+                        Console.WriteLine("이김");
+                        Stage.SetStageLevel(Stage.GetStageLevel() + 1);
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        stage.MainStage();
+                    
+                    }
+                    break;
+                
+            }
+            
         }
     }
 }

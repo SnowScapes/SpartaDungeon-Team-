@@ -75,6 +75,8 @@ namespace SpartaDungeon_Team_
                     Monstercounter++;
                 }
             }
+
+
             battle.BattleEntering(Monstercounter);
 
             // 보스 몬스터 등장 여부 결정
@@ -87,22 +89,6 @@ namespace SpartaDungeon_Team_
         void StageEnter(int _stageLevel)
         {
             SpawnMonsters(_stageLevel);
-
-            if (battle.GetIsVictory() == false)
-            {   
-                Console.WriteLine("패배 하였습니다");
-                Thread.Sleep(1000);
-                Console.Clear();
-                return;
-            }
-            else//이겼을때 난이도 올리기 
-            {
-                Console.WriteLine("이김");
-                SetStageLevel(_stageLevel + 1);
-                Thread.Sleep(1000);
-                Console.Clear();
-                return;
-            }
 
         }
         
@@ -123,10 +109,6 @@ namespace SpartaDungeon_Team_
             while (true)
             {
                 Intro();
-               
-                //if (!battle.GetIsVictory())
-                //    return;
-
                 switch (Console.ReadLine())
                 {
                     case "1":

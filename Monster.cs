@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SpartaDungeon_Team_
 {
+
     class Monster
     {
+        MonsterType type;
         public int index;
         public int level; //레벨
         public string name; // 이름
@@ -26,6 +28,14 @@ namespace SpartaDungeon_Team_
         public void SetDeath()
         {
             isDeath = true;
+        }
+        public Monster()
+        {
+            
+        }
+        public Monster(int _level,MonsterType _type,int _hp,int _atk)
+        {
+                        
         }
     }
 
