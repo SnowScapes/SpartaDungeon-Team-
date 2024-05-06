@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +33,8 @@ namespace SpartaDungeon_Team_
         public int GainExp;   // 얻은 경험치
         public int RequireExp;   // 다음레벨까지의 경험치
         public int MaxLevel;    // 최고 레벨
+        public List<Skill> SkillList;   // 플레이어 스킬 리스트
+        public int Mana;        //플레이어 마나
 
         private static Equipment unEquip = new Equipment(); // 아무 장비도 장착하지 않은 상태
 
@@ -49,9 +51,20 @@ namespace SpartaDungeon_Team_
             Armor = unEquip;
             Weapon = unEquip;
             Exp = 0;
+            Mana = 50;
+            MaxLevel = 5;
+            RequireExp = 10;
             Critical = 50;
             Accuracy = 120;
             Avoid = 50;
+            // 직업에 따른 초기 스탯
+            switch(_job)
+            {
+                case 1: Critical = 10; Accuracy = 100; Avoid = 20; break;
+                case 2: Critical = 30; Accuracy = 80; Avoid = 50; break;
+                case 3: Critical = 50; Accuracy = 80; Avoid = 30; break;
+            }
+
         }
 
         public float TotalAtk() // 총 공격력 = 공격력 + 장착 장비 공격력
@@ -64,23 +77,9 @@ namespace SpartaDungeon_Team_
             return Program.PlayerData.Defense + Program.PlayerData.Armor.Stat;
         }
 
-        public void GetExp()    // 경험치 얻기
-        {
-            //Program.PlayerData.GainExp = rewardExp;   // 얻은 경험치 == 잡은 몬스터의 레벨
-            //Program.PlayerData.Exp += Program.PlayerData.GainExp; // 현재 경험치에 얻은 경험치 더해주기
-            Program.PlayerData.GainExp = 15;
-            Program.PlayerData.Exp += Program.PlayerData.GainExp;
-            Program.PlayerData.MaxLevel = 5;
-            if (Program.PlayerData.Level >= Program.PlayerData.MaxLevel)   // 최고 레벨 도달 시
-            {
-                // 현재 경험치 더 이상 안오르게 하기
-                Program.PlayerData.Exp = 0;
-            }
-        }
-
         public void CheckLevelUp()    //레벨 업 조건 확인
         {
-           switch (Program.PlayerData.Level)
+            switch (Program.PlayerData.Level)
             {
                 case 1:
                     Program.PlayerData.RequireExp = 10;    // 레벨 1 일때 다음 레벨 필요 경험치 10
@@ -96,12 +95,7 @@ namespace SpartaDungeon_Team_
                     break;
             }
 
-            if (Program.PlayerData.Exp >= Program.PlayerData.RequireExp)
-            {
-                LevelUp();
-                int remainExp = Program.PlayerData.Exp - Program.PlayerData.RequireExp;  
-                Program.PlayerData.Exp = remainExp;              
-            }
+
         }
         public void LevelUp()   // 플레이어 레벨 업
         {
@@ -110,6 +104,9 @@ namespace SpartaDungeon_Team_
             Program.PlayerData.Level++;
             Program.PlayerData.Attack += LevelUpAtk;
             Program.PlayerData.Defense += LevelUpDef;
+            Program.PlayerData.Exp = 0;
+            CheckLevelUp();
+            
 
             Console.WriteLine($"레벨 업! Lv. {Program.PlayerData.Level - 1} -> Lv. {Program.PlayerData.Level}");
             Console.WriteLine($"공격력 : {Program.PlayerData.TotalAtk()} (+ 0.5)");

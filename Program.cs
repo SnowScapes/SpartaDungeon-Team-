@@ -17,9 +17,9 @@ namespace SpartaDungeon_Team_
 
             //인트로 화면 로드
             introScreen.IntroScreen(saveLoad);
-
+            
             // 행동 선택하기
-            while(true)
+            while (true)
             {
                 //메인화면 출력 및 메뉴 선택
                 switch (mainScreen.ShowMain())
