@@ -50,9 +50,14 @@ namespace SpartaDungeon_Team_
             Armor = unEquip;
             Weapon = unEquip;
             Exp = 0;
-            Critical = 50;
-            Accuracy = 120;
-            Avoid = 50;
+
+            // 직업에 따른 초기 스탯
+            switch(_job)
+            {
+                case 1: Critical = 10; Accuracy = 100; Avoid = 20; break;
+                case 2: Critical = 30; Accuracy = 80; Avoid = 50; break;
+                case 3: Critical = 50; Accuracy = 80; Avoid = 30; break;
+            }
         }
 
         public float TotalAtk() // 총 공격력 = 공격력 + 장착 장비 공격력
