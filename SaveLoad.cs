@@ -71,6 +71,8 @@ namespace SpartaDungeon_Team_
                     else
                         Program.PlayerData.Weapon = Program.PlayerData.UnEquip();
 
+                    // 스킬 정보 불러오기
+                    LoadSkillList();
                     return true;
                 }
                 else
@@ -166,9 +168,26 @@ namespace SpartaDungeon_Team_
             File.WriteAllText(itemInfoPath, jsonText);
         }
 
-        public void SkillList()
+        public void LoadSkillList()
         {
+            string jsonText = File.ReadAllText("SkillInfo.Json");
 
+            Program.PlayerData.SkillList = new List<Skill>();
+            List<Skill> skills = JsonConvert.DeserializeObject<List<Skill>>(jsonText);
+            foreach (var skill in skills)
+            {
+                if (skill.UseJob == Program.PlayerData.Job)
+                {
+                    // 저장된 스킬 타입에 따라 해당 자식 클래스로 재생성
+                    switch(skill.Type)
+                    {
+                        case SkillType.SingleAttack: Program.PlayerData.SkillList.Add(new SingleAttackSkill(skill.Type,skill.RequireLevel,skill.UseJob,skill.SkillName,skill.RequireMP,skill.Description,skill.Percentage)); break;
+                        case SkillType.MultiAttack: Program.PlayerData.SkillList.Add(new MultiAttackSkill(skill.Type, skill.RequireLevel, skill.UseJob, skill.SkillName, skill.RequireMP, skill.Description, skill.Percentage)); break;
+                        default: Program.PlayerData.SkillList.Add(new BuffSkill(skill.Type, skill.RequireLevel, skill.UseJob, skill.SkillName, skill.RequireMP, skill.Description, skill.Percentage)); break;
+                    }
+                }
+            }
+            skills.Clear();
         }
     }
 }

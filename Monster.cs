@@ -20,7 +20,7 @@ namespace SpartaDungeon_Team_
 
         public void GetDamage(float _damage)
         {
-            hp -= _damage;
+            hp -= (int)_damage;
         }
 
         public void SetDeath()

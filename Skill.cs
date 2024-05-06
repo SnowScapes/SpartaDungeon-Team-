@@ -17,7 +17,7 @@ namespace SpartaDungeon_Team_
         AvoidBuff,
         AccuracyBuff
     }
-
+    
     // 전체 공격용 Delegate
     delegate void skillAction(float _damage);
 
@@ -39,7 +39,7 @@ namespace SpartaDungeon_Team_
     {
         public void UseSkill();
     }
-
+    
     // 전체 스킬 관리용 Class
     internal class Skill
     {
@@ -51,10 +51,22 @@ namespace SpartaDungeon_Team_
         public string Description; // 스킬 설명
         public int Percentage; // 비율 (ex. 스탯 50% 증가, 공격력의 200% 데미지)
     }
-    
+
     // 단일 공격 스킬
     internal class SingleAttackSkill : Skill, ITargetting, ISkillActive
     {
+        public SingleAttackSkill(SkillType _type, int _requireLevel, Jobs _job, string _name, int _requireMp, string _description, int _percentage)
+        {
+            Type = _type;
+            RequireLevel = _requireLevel;
+            UseJob = _job;
+            SkillName = _name;
+            RequireMP = _requireMp;
+            Description = _description;
+            Percentage = _percentage;
+        }
+
+        BattlecCalcu calc = new BattlecCalcu();
         int targetIndex;
 
         public void UseSkill()
@@ -71,6 +83,16 @@ namespace SpartaDungeon_Team_
     // 전체 공격 스킬
     internal class MultiAttackSkill : Skill, ISkillActive
     {
+        public MultiAttackSkill(SkillType _type, int _requireLevel, Jobs _job, string _name, int _requireMp, string _description, int _percentage)
+        {
+            Type = _type;
+            RequireLevel = _requireLevel;
+            UseJob = _job;
+            SkillName = _name;
+            RequireMP = _requireMp;
+            Description = _description;
+            Percentage = _percentage;
+        }
         public event skillAction giveDamage;
         public void UseSkill()
         {
@@ -86,6 +108,16 @@ namespace SpartaDungeon_Team_
     // 공격력 버프 스킬
     internal class BuffSkill : Skill, IBuff, ISkillActive
     {
+        public BuffSkill(SkillType _type, int _requireLevel, Jobs _job, string _name, int _requireMp, string _description, int _percentage)
+        {
+            Type = _type;
+            RequireLevel = _requireLevel;
+            UseJob = _job;
+            SkillName = _name;
+            RequireMP = _requireMp;
+            Description = _description;
+            Percentage = _percentage;
+        }
         // 스킬 타입에 따라 버프 대상 스탯 참조 return
         ref float getBuffTargetStat()
         {

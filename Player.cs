@@ -33,6 +33,7 @@ namespace SpartaDungeon_Team_
         public int GainExp;   // 얻은 경험치
         public int RequireExp;   // 다음레벨까지의 경험치
         public int MaxLevel;    // 최고 레벨
+        public List<Skill> SkillList;   // 플레이어 스킬 리스트
 
         private static Equipment unEquip = new Equipment(); // 아무 장비도 장착하지 않은 상태
 
