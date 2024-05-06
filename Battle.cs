@@ -40,6 +40,7 @@ namespace SpartaDungeon_Team_
             Program.PlayerData.Exp += Program.PlayerData.GainExp;
 
 
+
             if (Program.PlayerData.Exp >= Program.PlayerData.RequireExp)
             {
                 Player.LevelUp();
@@ -73,6 +74,10 @@ namespace SpartaDungeon_Team_
                         monsterLifeCount++;
                         battleMonsters.Add(monsterInfo.GetMonsterInfo(testMonsterIdx[i]));
                     }
+
+                    monsterConunt = monsterLifeCount;
+                    playerHP = Program.PlayerData.Health;
+                    isfirst = false;
                 }
                 foreach (var monsterIdx in battleMonsters)
                 {
@@ -86,16 +91,9 @@ namespace SpartaDungeon_Team_
                     }
                 }
 
-                if (isfirst == true)
-                {
-                    monsterConunt = monsterLifeCount;
-                    playerHP = Program.PlayerData.Health;
-                    isfirst = false;
-                }
-
                 Console.WriteLine();
                 Console.WriteLine("[내정보]");
-                Console.WriteLine("Lv.{0} {1} {2}", Program.PlayerData.Level, Program.PlayerData.Name, Program.PlayerData.Job);
+                Console.WriteLine("Lv.{0} {1} ({2})", Program.PlayerData.Level, Program.PlayerData.Name, Program.PlayerData.Job);
                 Console.WriteLine("HP {0}/{1}", Program.PlayerData.Health, playerHP);
                 Console.WriteLine();
                 if (notValid)
@@ -291,7 +289,6 @@ namespace SpartaDungeon_Team_
             Console.WriteLine();
             Console.Write(">>");
             Console.ReadLine();
-            isfirst = true;
             BattleEntering();
         }
     }
