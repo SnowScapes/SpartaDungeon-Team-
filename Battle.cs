@@ -275,15 +275,17 @@ namespace SpartaDungeon_Team_
                     Console.WriteLine("던전에서 몬스터 {0}마리를 잡았습니다.", monsterConunt);
                     Console.WriteLine();
                     GetExp(MonsterTotalExp());
+                    Console.WriteLine("Lv.{0} {1}", Program.PlayerData.Level, Program.PlayerData.Name);
+                    Console.WriteLine("HP {0} -> {1}", Program.PlayerData.Health, playerHP);
+                    Console.WriteLine("[{0}] 의 경험치를 얻었습니다!", monsterExp);  // 경험치 얻은거 얼마인지 출력해주기
                     break;
                 case 2:
                     Console.WriteLine("You Lose");
+                    Console.WriteLine("Lv.{0} {1}", Program.PlayerData.Level, Program.PlayerData.Name);
+                    Console.WriteLine("HP {0} -> {1}", Program.PlayerData.Health, playerHP);
                     Console.WriteLine();
                     break;
             }
-            Console.WriteLine("Lv.{0} {1}", Program.PlayerData.Level, Program.PlayerData.Name);
-            Console.WriteLine("HP {0} -> {1}", Program.PlayerData.Health, playerHP);
-            Console.WriteLine("{0} 의 경험치를 얻었습니다!", monsterExp);  // 경험치 얻은거 얼마인지 출력해주기
             Console.WriteLine();
             Console.WriteLine("0. 다음");
             Console.WriteLine();
