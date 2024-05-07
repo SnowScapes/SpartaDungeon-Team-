@@ -20,8 +20,8 @@
 
 ---
 ### 🌓 플레이 영상
-**클릭하면 이동**
-[![플레이영상](https://img.youtube.com/vi/x_vE_qIIouQ/0.jpg)](https://youtu.be/x_vE_qIIouQ?si=GYskSgqDG827PWI8)
+**클릭하면 이동**    
+[![플레이영상](https://img.youtube.com/vi/x_vE_qIIouQ/0.jpg)](https://youtu.be/x_vE_qIIouQ?si=GYskSgqDG827PWI8)     
 
 ---
 
