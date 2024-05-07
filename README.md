@@ -2,10 +2,10 @@
 
 <div align="center">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGGtUQnh2auP6-5piyLjjhl-X2ScndYQy1bBnparJO&s"></img>
-</div>
+
 
 ## 3주차 팀 프로젝트
-
+</div>
   
 ### 🌓 프로젝트 정보
 1. 개요 : 콘솔(CMD) 텍스트형 RPG
