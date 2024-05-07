@@ -22,7 +22,7 @@
 ### 🌕 필수 구현 목록
 
 ##### 1. 게임 시작 화면    
-<details><summary>사진 펼치기</summary>
+<il><details><summary>사진 펼치기</summary>
 
    ![image](https://github.com/SnowScapes/SpartaDungeon-Team-/assets/39547945/d7c4b3cb-f61b-4e03-ba10-28009f38884e)    
 </details>
@@ -38,6 +38,7 @@
 
    ![image](https://github.com/SnowScapes/SpartaDungeon-Team-/assets/39547945/56b6f496-fce8-4b06-928f-086ae9de6fad)    
 </details>
+</il>
 
 ### 🌕 선택 구현 목록
   > * 1 순위
