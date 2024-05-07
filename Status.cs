@@ -36,11 +36,13 @@ namespace SpartaDungeon_Team_
                 switch (Console.ReadLine())
                 {
                     case "0":
+                        Console.Clear();
                         return;
                     default:
                         Console.WriteLine("잘못된 입력입니다.");
                         break;
                 }
+                
             }
         }
     }
