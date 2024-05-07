@@ -76,7 +76,7 @@ namespace SpartaDungeon_Team_
             minion.hp = 15+_stageLevel;
             minion.name = "미니언";
             minion.attack = 5+_stageLevel;
-            minion.avoid = 30;
+            minion.avoid = 10;
             minion.accuracy = 50;
 
             return minion;
@@ -91,7 +91,7 @@ namespace SpartaDungeon_Team_
             voidbug.name = "공허충";
             voidbug.hp = 10 + _stageLevel;            
             voidbug.attack = 9 + _stageLevel;
-            voidbug.avoid = 50;
+            voidbug.avoid = 10;
             voidbug.accuracy = 80;
            
             return voidbug;
@@ -106,7 +106,7 @@ namespace SpartaDungeon_Team_
             cannonMinion.name = "대포 미니언";
             cannonMinion.hp = 25 + _stageLevel;
             cannonMinion.attack = 8 + _stageLevel;
-            cannonMinion.avoid = 60;
+            cannonMinion.avoid = 10;
             cannonMinion.accuracy = 100;
            
             return cannonMinion;

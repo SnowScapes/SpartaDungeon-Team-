@@ -61,9 +61,9 @@ namespace SpartaDungeon_Team_
             // 직업에 따른 초기 스탯
             switch(_job)
             {
-                case 1: Critical = 10; Accuracy = 100; Avoid = 20; break;
-                case 2: Critical = 30; Accuracy = 80; Avoid = 50; break;
-                case 3: Critical = 50; Accuracy = 80; Avoid = 30; break;
+                case 1: Critical = 10; Accuracy = 150; Avoid = 20; break;
+                case 2: Critical = 30; Accuracy = 150; Avoid = 50; break;
+                case 3: Critical = 50; Accuracy = 150; Avoid = 30; break;
             }
 
         }

@@ -53,6 +53,7 @@ namespace SpartaDungeon_Team_
                     Program.PlayerData.Defense = (float)jsonObject["defense"];
                     Program.PlayerData.Critical = (float)jsonObject["critical"];
                     Program.PlayerData.Avoid = (float)jsonObject["avoid"];
+                    Program.PlayerData.Accuracy = (float)jsonObject["accuracy"];
                     Program.PlayerData.Health = (int)jsonObject["health"];
                     Program.PlayerData.Gold = (int)jsonObject["gold"];
                     Program.PlayerData.Potion = (int)jsonObject["potion"];
@@ -132,6 +133,7 @@ namespace SpartaDungeon_Team_
                     new JProperty("defense", Program.PlayerData.Defense),
                     new JProperty("critical", Program.PlayerData.Critical),
                     new JProperty("avoid", Program.PlayerData.Avoid),
+                    new JProperty("accuracy", Program.PlayerData.Accuracy),
                     new JProperty("health", Program.PlayerData.Health),
                     new JProperty("gold", Program.PlayerData.Gold),
                     new JProperty("potion", Program.PlayerData.Potion),
