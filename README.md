@@ -20,14 +20,14 @@
 ---
 
 ### 🌕 필수 구현 목록
-<b>
-1. 게임 시작 화면    
+
+##### 1. 게임 시작 화면    
    ![image](https://github.com/SnowScapes/SpartaDungeon-Team-/assets/39547945/d7c4b3cb-f61b-4e03-ba10-28009f38884e)    
-2. 상태 보기 화면    
+##### 2. 상태 보기 화면    
    ![image](https://github.com/SnowScapes/SpartaDungeon-Team-/assets/39547945/b0585f28-4947-48d2-a95d-0c8747caaf0d)    
-3. 전투 시작 화면    
+##### 3. 전투 시작 화면    
    ![image](https://github.com/SnowScapes/SpartaDungeon-Team-/assets/39547945/56b6f496-fce8-4b06-928f-086ae9de6fad)    
-</b>
+
 
 ### 🌕 선택 구현 목록
   > * 1 순위
