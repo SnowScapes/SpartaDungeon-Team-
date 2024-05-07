@@ -9,7 +9,7 @@ namespace SpartaDungeon_Team_
     internal class Battle
     {
         Program program = new Program();
-        ButtlecCalcu buttlecCalcu = new ButtlecCalcu();
+        BattlecCalcu buttlecCalcu = new BattlecCalcu();
         Random rand = new Random();
         
         //monster init()
@@ -17,9 +17,14 @@ namespace SpartaDungeon_Team_
         VoidBug bug = new VoidBug();
         CannonMinion CannonMinion = new CannonMinion();
         
-
-        //test
         List<NewMonster> newMonster = new List<NewMonster>();
+        //test
+        public static List<NewMonster> battleMonsters = new List<NewMonster>();
+
+        public List<NewMonster> GetNewMonster()
+        {
+            return newMonster;
+        }
 
         int[] testPlayer = new int[6] { 1, 10, 5, 100, 1500, 3 };
 
@@ -107,9 +112,9 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine("1. 공격");
                 Console.WriteLine("2. 스킬");
 
-                switch (Console.ReadKey().Key)
+                switch (Console.ReadLine())
                 {
-                    case 1: 
+                    case "1":
                         BattleSet();
                         break;
                     default: 
@@ -163,9 +168,11 @@ namespace SpartaDungeon_Team_
                 {
                     case 0:
                         newMonster.Clear();
-                        break ;
+                        MainScreen mainScreen = new MainScreen();
+                        mainScreen.ShowMain();
+                        return;
                     default:
-                        BattlePhase(inputMenu - 1); 
+                        PlayerPhase(inputMenu - 1); 
                         break;
                 }
             }

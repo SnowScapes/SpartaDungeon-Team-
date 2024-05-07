@@ -124,6 +124,10 @@ namespace SpartaDungeon_Team_
 
                     case "3":
                         Console.Clear();
+                        MainScreen mainScreen = new MainScreen();
+                        Battle battle = new Battle();
+                        battle.GetNewMonster().Clear();
+                        mainScreen.ShowMain();
                         return;
 
                     default:

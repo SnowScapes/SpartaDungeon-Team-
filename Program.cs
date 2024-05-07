@@ -6,7 +6,7 @@ namespace SpartaDungeon_Team_
         
         static void Main(string[] args)
         {
-            // ?꾩슂????�???�뱾 ?�덈???�린
+            // ?�요???�래?�들 불러?�기
             SaveLoad saveLoad = new SaveLoad();
             Intro introScreen = new Intro();
             MainScreen mainScreen = new MainScreen();
@@ -17,21 +17,21 @@ namespace SpartaDungeon_Team_
             Stage stage = new Stage();
 
 
-            //?명듃�??붾㈃ 濡쒕�?
+            //?�트�??�면 로드
             introScreen.IntroScreen(saveLoad);
-            
+
             // ?�동 ?�택?�기
             while (true)
             {
-                //硫붿??붾㈃ ?�쒕??�?硫붾???좏깮
+                //메인?�면 출력 �?메뉴 ?�택
                 switch (mainScreen.ShowMain())
                 {
-                    case Screen.Status: statusScreen.StatusMenu(); break; // ?곹깭 蹂닿�??붾㈃ 硫붿�???�덈???�린
-                    case Screen.Dungeon:stage.MainStage(); break; // ?꾪닾 ??�옉 ?붾㈃ 硫붿�???�덈???�린
-                    case Screen.Inventory:inventoryScreen.ShowInventory(); break; // ?몃깽?좊━ ?붾㈃ 硫붿�???�덈???�린
-                    case Screen.Shop: shopScreen.ViewShop(); break; // ?곸젏 ?붾㈃ 硫붿�???�덈???�린
-                    case Screen.Save: saveLoad.SavePlayerInfo();break; // ????硫붿????�덈???�린
-                    case Screen.Load: saveLoad.LoadPlayerInfo();break; // ???λ???�꽣 濡쒕�?硫붿????�덈???�린
+                    case Screen.Status: statusScreen.StatusMenu(); break; // ?�태 보기 ?�면 메서??불러?�기
+                    case Screen.Dungeon:stage.MainStage(); break; // ?�투 ?�작 ?�면 메서??불러?�기
+                    case Screen.Inventory:inventoryScreen.ShowInventory(); break; // ?�벤?�리 ?�면 메서??불러?�기
+                    case Screen.Shop: shopScreen.ViewShop(); break; // ?�점 ?�면 메서??불러?�기
+                    case Screen.Save: saveLoad.SavePlayerInfo();break; // ?�??메소??불러?�기
+                    case Screen.Load: saveLoad.LoadPlayerInfo();break; // ?�?�데?�터 로드 메소??불러?�기
                 }
             }
         }

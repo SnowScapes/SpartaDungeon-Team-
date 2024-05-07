@@ -71,7 +71,7 @@ namespace SpartaDungeon_Team_
 
         public void UseSkill()
         {
-            Battle.battleMonsters[targetIndex].GetDamage(Program.PlayerData.Attack * (Percentage / 100));
+           // Battle.battleMonsters[targetIndex].GetDamage(Program.PlayerData.Attack * (Percentage / 100));
         }
 
         public void GetTargetIndex(int _index)
@@ -96,10 +96,13 @@ namespace SpartaDungeon_Team_
         public event skillAction giveDamage;
         public void UseSkill()
         {
-            foreach (Monster targetMonster in Battle.battleMonsters)
+            foreach (NewMonster targetMonster in Battle.battleMonsters)
             {
-                if (!targetMonster.isDeath)
-                    giveDamage += targetMonster.GetDamage;
+                if (!targetMonster.IsDead())
+                {
+                    // giveDamage += targetMonster.OnDamaged(10);
+                }
+
             }
             giveDamage?.Invoke(Program.PlayerData.Attack*(Percentage/100));
         }
