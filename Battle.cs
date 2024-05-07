@@ -52,7 +52,25 @@ namespace SpartaDungeon_Team_
         {
             monsterNumber = _monsterNumber;
             bool notValid = false;
-           
+
+            for (int i = 0; i <= _monsterNumber; i++)
+            {
+                int randnum = rand.Next(1, (int)MonsterType.End);
+                switch (randnum)
+                {
+                    case 1:
+                        newMonster.Add(minion.Clone(Stage.GetStageLevel()));
+                        break;
+                    case 2:
+                        newMonster.Add(bug.Clone(Stage.GetStageLevel()));
+                        break;
+                    case 3:
+                        newMonster.Add(CannonMinion.Clone(Stage.GetStageLevel()));
+                        break;
+                }
+                monsterLifeCount++;
+            }
+
             while (true)
             {
                 Console.Clear();
@@ -60,25 +78,6 @@ namespace SpartaDungeon_Team_
                 Console.WriteLine();
 
                 playerHP = Program.PlayerData.Health;
-
-                for (int i = 0; i <= _monsterNumber; i++)
-                {
-                    int randnum = rand.Next(1, (int)MonsterType.End);
-                    switch (randnum)
-                    {
-                        case 1:
-                            newMonster.Add(minion.Clone(Stage.GetStageLevel()));                       
-                            break;
-                        case 2:
-                            newMonster.Add(bug.Clone(Stage.GetStageLevel()));
-                            break;
-                        case 3:
-                            newMonster.Add(CannonMinion.Clone(Stage.GetStageLevel()));
-                            break;
-                    }
-                    monsterLifeCount++;
-                }
-
                
                 foreach(var item in newMonster)
                 {
@@ -92,8 +91,6 @@ namespace SpartaDungeon_Team_
                     }
                     
                 }
-
-
 
                 monsterConunt = monsterLifeCount;
              
@@ -118,6 +115,9 @@ namespace SpartaDungeon_Team_
                     case "1":
                         BattleSet();
                         break;
+                    case "2":
+                        SkillSet();
+                        break;
                     default: 
                         notValid = true; 
                         break;
@@ -126,59 +126,89 @@ namespace SpartaDungeon_Team_
             
         }
 
+        private void SkillSet()
+        {
+            Console.Clear();
+            Console.WriteLine("Battle!!\n");
+
+            foreach (var item in newMonster)
+            {
+                if (item.IsDead())
+                {
+                    Console.WriteLine("Lv.{0} {1} Dead", item.GetLevel(), item.GetName());
+                }
+                else
+                {
+                    Console.WriteLine("Lv.{0} {1} HP{2}", item.GetLevel(), item.GetName(), item.GetHp());
+                }
+
+            }
+
+            Console.WriteLine("\n[내정보]");
+            Console.WriteLine("Lv.{0} {1} {2}", Program.PlayerData.Level, Program.PlayerData.Name, Program.PlayerData.Job);
+            Console.WriteLine("HP {0}/{1}\n", Program.PlayerData.Health, playerHP);
+            for (int i = 0; i < Program.PlayerData.SkillList.Count; i++)
+            {
+                Console.WriteLine("{0}. {1} - MP {2} (요구 Lv.{3})", i + 1, Program.PlayerData.SkillList[i].SkillName, Program.PlayerData.SkillList[i].RequireMP, Program.PlayerData.SkillList[i].RequireLevel);
+                Console.WriteLine("     {0}\n", Program.PlayerData.SkillList[i].Description);
+            }
+            switch (Console.ReadKey().Key)
+            {
+                case ConsoleKey.D1: break;
+                case ConsoleKey.D2: break;
+                case ConsoleKey.D3: break;
+                case ConsoleKey.D4: break;
+            }
+        }
+
         private void BattleSet() // 전투 진행
         {
             
             int battleIdx = 0;
-            while (true)
+            Console.Clear();
+            Console.WriteLine("Battle!!");
+            Console.WriteLine();
+
+
+            foreach (var item in newMonster)
             {
-                Console.Clear();
-                Console.WriteLine("Battle!!");
-                Console.WriteLine();
-
-
-                foreach(var item in newMonster)
+                battleIdx++;
+                if (item.IsDead())
                 {
-                    battleIdx++;
-                    if (item.IsDead())
-                    {
-                        Console.WriteLine("{0}. Lv.{1} {2} Dead", battleIdx, item.GetLevel(),item.GetName());
-                    }
-                    else
-                    {
-                        Console.WriteLine("{0}. Lv.{1} {2} HP {3}", battleIdx, item.GetLevel(), item.GetName(),item.GetHp());
-                    }
+                    Console.WriteLine("{0}. Lv.{1} {2} Dead", battleIdx, item.GetLevel(), item.GetName());
                 }
-
-                battleIdx = 0;
-
-                Console.WriteLine();
-                Console.WriteLine("[내정보]");
-                Console.WriteLine("Lv.{0} Chad (전사)", Program.PlayerData.Name);
-                Console.WriteLine("HP {0}/{1}", Program.PlayerData.Health, playerHP);
-                Console.WriteLine();
-                Console.WriteLine("0. 취소");
-                Console.WriteLine();
-                Console.WriteLine("대상을 선택해주세요.");
-                Console.Write(">>");
-            
-         
-                int inputMenu = int.Parse(Console.ReadLine());
-                
-                switch (inputMenu)
+                else
                 {
-                    case 0:
-                        newMonster.Clear();
-                        MainScreen mainScreen = new MainScreen();
-                        mainScreen.ShowMain();
-                        return;
-                    default:
-                        PlayerPhase(inputMenu - 1); 
-                        break;
+                    Console.WriteLine("{0}. Lv.{1} {2} HP {3}", battleIdx, item.GetLevel(), item.GetName(), item.GetHp());
                 }
             }
 
-            
+            battleIdx = 0;
+
+            Console.WriteLine();
+            Console.WriteLine("[내정보]");
+            Console.WriteLine("Lv.{0} Chad (전사)", Program.PlayerData.Name);
+            Console.WriteLine("HP {0}/{1}", Program.PlayerData.Health, playerHP);
+            Console.WriteLine();
+            Console.WriteLine("0. 취소");
+            Console.WriteLine();
+            Console.WriteLine("대상을 선택해주세요.");
+            Console.Write(">>");
+
+
+            int inputMenu = int.Parse(Console.ReadLine());
+
+            switch (inputMenu)
+            {
+                case 0:
+                    newMonster.Clear();
+                    MainScreen mainScreen = new MainScreen();
+                    mainScreen.ShowMain();
+                    return;
+                default:
+                    PlayerPhase(inputMenu - 1);
+                    break;
+            }
         }
 
 
