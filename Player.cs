@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,38 +8,38 @@ namespace SpartaDungeon_Team_
 {
     enum Jobs
     {
-        �사 = 1,
+        전사 = 1,
         궁수 = 2,
-        마법= 3
+        마법사 = 3
     }
 
     struct Player
     {
-        public int Level; // ?�레?�어 ?�벨
-        public Jobs Job; // ?�레?�어 직업
-        public string Name; // ?�레?�어 ?�름
-        public float LevelUpAtk;    // ?�벨 ????증�???공격??
-        public float LevelUpDef;    // ?�벨 ????증�???방어??
-        public float Attack; // ?�레?�어 공격??
-        public float Defense; // ?�레?�어 방어??
-        public float Critical; // ?�레?�어 치명?�
-        public float Accuracy; // ?�레?�어 명중�?
-        public float Avoid; // ?�레?�어 ?�피??
-        public int Health; // ?�레?�어 체력
-        public int Gold; // ?�레?�어 골드
-        public int Potion; // ?�레?�어 ?�션 ??
-        public Equipment Armor; // ?�재 ?�착 �?방어�?
-        public Equipment Weapon; // ?�재 ?�착 �?무기
-        public int Exp;     // ?�재 ??경험�?
-        public int GainExp;   // ?��? 경험�?
-        public int RequireExp;   // ?�음?�벨까�???경험�?
-        public int MaxLevel;    // 최고 ?�벨
-        public List<Skill> SkillList;   // ?�레?�어 ?�킬 리스??
-        public int Mana;        //?�레?�어 마나
+        public int Level; // 플레이어 레벨
+        public Jobs Job; // 플레이어 직업
+        public string Name; // 플레이어 이름
+        public float LevelUpAtk;    // 레벨업 시 공격력 증가량
+        public float LevelUpDef;    // 레벨업 시 방어력 증가량
+        public float Attack; // 플레이어 공격력
+        public float Defense; // 플레이어 방어력
+        public float Critical; // 플레이어 치명률
+        public float Accuracy; // 플레이어 명중률
+        public float Avoid; // 플레이어 회피율
+        public int Health; // 플레이어 체력
+        public int Gold; // 플레이어 골드
+        public int Potion; // 플레이어 포션 개수
+        public Equipment Armor; // 현재 장착 방어구
+        public Equipment Weapon; // 현재 장착 무기
+        public int Exp;     // 현재 경험치
+        public int GainExp;   // 습득 경험치
+        public int RequireExp;   // 레벨업 필요 경험치
+        public int MaxLevel;    // 최고 레벨
+        public List<Skill> SkillList;   // 플레이어 스킬 리스트
+        public int Mana;        // 플레이어 마나
 
-        private static Equipment unEquip = new Equipment(); // ?�무 ?�비???�착?��? ?��? ?�태
+        private static Equipment unEquip = new Equipment(); // 장비 미착용 상태를 위한 클래스
 
-        //초기 ?�레?�어 ?�탯 ?�정
+        //초기 플레이어 스탯 설정
         public void SetPlayerStat(int _job)
         {
             Level = 1;
@@ -58,7 +58,7 @@ namespace SpartaDungeon_Team_
             Critical = 50;
             Accuracy = 120;
             Avoid = 50;
-            // 직업???�른 초기 ?�탯
+            // 직업에 따른 초기 스탯
             switch(_job)
             {
                 case 1: Critical = 10; Accuracy = 100; Avoid = 20; break;
@@ -68,37 +68,37 @@ namespace SpartaDungeon_Team_
 
         }
 
-        public float TotalAtk() // �?공격??= 공격??+ ?�착 ?�비 공격??
+        public float TotalAtk() // 총 공격력 = 플레이어 공격력 + 장비 공격력
         {
             return Program.PlayerData.Attack + Program.PlayerData.Weapon.Stat;
         }
 
-        public float TotalDef()  // �?방어??= 방어??+ ?�착 ?�비 방어??
+        public float TotalDef()  // 총 방어력 = 플레이어 방어력 + 장비 방어력
         {
             return Program.PlayerData.Defense + Program.PlayerData.Armor.Stat;
         }
 
-        public void CheckLevelUp()    //?�벨 ??조건 ?�인
+        public void CheckLevelUp()    //레벨업 필요 경험치 설정
         {
             switch (Program.PlayerData.Level)
             {
                 case 1:
-                    Program.PlayerData.RequireExp = 10;    // ?�벨 1 ?�때 ?�음 ?�벨 ?�요 경험�?10
+                    Program.PlayerData.RequireExp = 10;    // 레벨 1일 때 필요 경험치 10
                     break;
                 case 2:
-                    Program.PlayerData.RequireExp = 35;    // ?�벨 2 ?�때 ?�음 ?�벨 ?�요 경험�?35
+                    Program.PlayerData.RequireExp = 35;    // 레벨 2일 때 필요 경험치 35
                     break;
                 case 3:
-                    Program.PlayerData.RequireExp = 65;    // ?�벨 3 ?�때 ?�음 ?�벨 ?�요 경험�?65
+                    Program.PlayerData.RequireExp = 65;    // 레벨 3일 때 필요 경험치 65
                     break;
                 case 4:
-                    Program.PlayerData.RequireExp = 100;   // ?�벨 4 ?�때 ?�음 ?�벨 ?�요 경험�?100
+                    Program.PlayerData.RequireExp = 100;   // 레벨 4일 때 필요 경험치 100
                     break;
             }
 
 
         }
-        public void LevelUp()   // ?�레?�어 ?�벨 ??
+        public void LevelUp()   // 플레이어 레벨 업
         {
             float LevelUpAtk = 0.5f;
             float LevelUpDef = 1f;
@@ -109,13 +109,13 @@ namespace SpartaDungeon_Team_
             CheckLevelUp();
             
 
-            Console.WriteLine($"?�벨 ?? Lv. {Program.PlayerData.Level - 1} -> Lv. {Program.PlayerData.Level}");
-            Console.WriteLine($"공격??: {Program.PlayerData.TotalAtk()} (+ 0.5)");
-            Console.WriteLine($"방어??: {Program.PlayerData.TotalDef()} (+ 1)");
+            Console.WriteLine($"레벨 업 Lv. {Program.PlayerData.Level - 1} -> Lv. {Program.PlayerData.Level}");
+            Console.WriteLine($"공격력: {Program.PlayerData.TotalAtk()} (+ 0.5)");
+            Console.WriteLine($"방어?력: {Program.PlayerData.TotalDef()} (+ 1)");
         }
-        //?�이???�착, ?�제 기능
-        //type(방어구or무기)???�라 �??�치???�착
-        //?�매 ?��? ?�제??경우??초기??
+        // 플레이어 장비 장착, 해제 기능
+        // type(방어구or무기)에 따라 자동 장착
+        // 판매시 방어구 장착 해제
         public void ManageEquipments(Equipment _equip)
         {
             if (_equip.Type == EquipmentType.Armor)

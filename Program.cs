@@ -1,4 +1,4 @@
-namespace SpartaDungeon_Team_
+﻿namespace SpartaDungeon_Team_
 {
     internal class Program
     {
@@ -6,7 +6,7 @@ namespace SpartaDungeon_Team_
         
         static void Main(string[] args)
         {
-            // ?�요???�래?�들 불러?�기
+            // 필요 클래스들 불러오기
             SaveLoad saveLoad = new SaveLoad();
             Intro introScreen = new Intro();
             MainScreen mainScreen = new MainScreen();
@@ -17,21 +17,21 @@ namespace SpartaDungeon_Team_
             Stage stage = new Stage();
 
 
-            //?�트�??�면 로드
+            // 인트로 화면 로드
             introScreen.IntroScreen(saveLoad);
 
-            // ?�동 ?�택?�기
+            // 화면 이동 선택하기
             while (true)
             {
-                //메인?�면 출력 �?메뉴 ?�택
+                //메인화면 출력 및 이동할 화면 선택
                 switch (mainScreen.ShowMain())
                 {
-                    case Screen.Status: statusScreen.StatusMenu(); break; // ?�태 보기 ?�면 메서??불러?�기
-                    case Screen.Dungeon:stage.MainStage(); break; // ?�투 ?�작 ?�면 메서??불러?�기
-                    case Screen.Inventory:inventoryScreen.ShowInventory(); break; // ?�벤?�리 ?�면 메서??불러?�기
-                    case Screen.Shop: shopScreen.ViewShop(); break; // ?�점 ?�면 메서??불러?�기
-                    case Screen.Save: saveLoad.SavePlayerInfo();break; // ?�??메소??불러?�기
-                    case Screen.Load: saveLoad.LoadPlayerInfo();break; // ?�?�데?�터 로드 메소??불러?�기
+                    case Screen.Status: statusScreen.StatusMenu(); break; // 상태 보기 화면 메소드 불러오기
+                    case Screen.Dungeon:stage.MainStage(); break; // 전투 시작 화면 메소드 불러오기
+                    case Screen.Inventory:inventoryScreen.ShowInventory(); break; // 인벤토리 화면 메소드 불러오기
+                    case Screen.Shop: shopScreen.ViewShop(); break; // 상점 화면 메소드 불러오기
+                    case Screen.Save: saveLoad.SavePlayerInfo();break; // 저장 화면 메소드 불러오기
+                    case Screen.Load: saveLoad.LoadPlayerInfo();break; // 저장(불러오기) 화면 메소드 불러오기
                 }
             }
         }
