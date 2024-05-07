@@ -1,23 +1,23 @@
 # 💻 스파르타 던전 (Console Text Rpg) <img src="https://img.shields.io/badge/C%23-5D5D5D?style=flat&logo=csharp&logoColor=FFFFFF"/>
 
-### 내일 배움 캠프 3주차 팀 프로젝트
+## 내일 배움 캠프 3주차 팀 프로젝트
 
-#### 🌓 프로젝트 정보
+### 🌓 프로젝트 정보
 1. 개요 : 콘솔(CMD) 텍스트형 RPG
 2. 기술 : C#
 3. 팀명 : 2%
 4. 팀원 : 곽경훈, 최관호, 이시원, 박재민
 5. SA : [2% Notion](https://teamsparta.notion.site/2-8558d1211ab049019c5faef439a576b0, "2% SA")
 ---
-#### 🌔 플레이 영상
+### 🌔 플레이 영상
 
 ---
-#### 🌕 필수 구현 목록
+### 🌕 필수 구현 목록
 1. 게임 시작 화면
 2. 상태 보기 화면
 3. 전투 시작 화면    
 
-#### 🌕 선택 구현 목록
+### 🌕 선택 구현 목록
 > <b>각 기능 담당자 및 세부 사항은 [2% Notion](https://teamsparta.notion.site/2-8558d1211ab049019c5faef439a576b0, "2% SA")에서 확인 가능</b>     
 > * 1 순위
 >   1. 캐릭터 생성 기능
