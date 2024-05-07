@@ -1,6 +1,6 @@
 # 💻 스파르타 던전 (Console Text Rpg) <img src="https://img.shields.io/badge/C%23-5D5D5D?style=flat&logo=csharp&logoColor=FFFFFF"/>    
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGGtUQnh2auP6-5piyLjjhl-X2ScndYQy1bBnparJO&s" width="120%" height="120%"></img>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGGtUQnh2auP6-5piyLjjhl-X2ScndYQy1bBnparJO&s"></img>
 ## 3주차 팀 프로젝트
 
 ### 🌓 프로젝트 정보
