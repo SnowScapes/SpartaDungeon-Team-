@@ -38,5 +38,6 @@
   >   1. 직업 선택
   >   2. 게임 저장(Newtonsoft.Json 패키지 사용)
   >   3. 스킬 기능(미완성)
+
 <b>각 기능 담당자 및 세부 사항은 [2% Notion](https://teamsparta.notion.site/2-8558d1211ab049019c5faef439a576b0, "2% SA")에서 확인 가능</b>  
 ---
