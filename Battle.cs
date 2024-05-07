@@ -11,6 +11,7 @@ namespace SpartaDungeon_Team_
         Program program = new Program();
         BattlecCalcu buttlecCalcu = new BattlecCalcu();
         Random rand = new Random();
+        Player player = new Player();
         
         //monster init()
         Minion minion = new Minion();
@@ -34,7 +35,7 @@ namespace SpartaDungeon_Team_
        
         int monsterLifeCount = 0;
         int monsterConunt=0;
-
+        int monsterExp = 0;
        
         
         bool isfirst = true;
@@ -295,6 +296,35 @@ namespace SpartaDungeon_Team_
             }
         }
 
+        public int MonsterTotalExp()  // 전투 중 잡은 몬스터 레벨의 총합을 monsterExp에 넣어주기
+        {
+            for (int i = 0; i < newMonster.Count; i++)
+            {
+                if (newMonster[i].IsDead())
+                {
+                    monsterExp += newMonster[i].GetLevel();
+                }
+
+            }
+            return monsterExp;
+        }
+        public void GetExp(int _monsterExp)       // 경험치 얻기
+        {
+            Program.PlayerData.GainExp = _monsterExp;
+            Program.PlayerData.Exp += Program.PlayerData.GainExp;
+
+
+            if (Program.PlayerData.Exp >= Program.PlayerData.RequireExp)
+            {
+                player.LevelUp();
+            }
+
+            if (Program.PlayerData.Level >= Program.PlayerData.MaxLevel)   // 최고 레벨 도달 시
+            {
+                // 현재 경험치 더 이상 안오르게 하기
+                Program.PlayerData.Exp = 0;
+            }
+        }
 
         private void EndPhase(int result)
         {
@@ -309,6 +339,10 @@ namespace SpartaDungeon_Team_
                     Console.WriteLine("Victory");
                     Console.WriteLine();
                     Console.WriteLine("던전에서 몬스터 {0}마리를 잡았습니다.", monsterConunt);
+                    GetExp(MonsterTotalExp());
+                    Console.WriteLine("Lv.{0} {1}", Program.PlayerData.Level, Program.PlayerData.Name);
+                    Console.WriteLine("HP {0} -> {1}", Program.PlayerData.Health, playerHP);
+                    Console.WriteLine("[{0}]의 경험치를 얻었습니다.", monsterExp);
                     Console.WriteLine();
                     isVictory = true;
                     break;
@@ -321,8 +355,6 @@ namespace SpartaDungeon_Team_
                     break;
             }
 
-            Console.WriteLine("Lv.{0} {1}", Program.PlayerData.Level, Program.PlayerData.Name);
-            Console.WriteLine("HP {0} -> {1}", Program.PlayerData.Health, playerHP);
             Console.WriteLine();
             Console.WriteLine("0. 다음");
             Console.WriteLine();
