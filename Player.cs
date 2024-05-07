@@ -111,7 +111,7 @@ namespace SpartaDungeon_Team_
 
             Console.WriteLine($"레벨 업 Lv. {Program.PlayerData.Level - 1} -> Lv. {Program.PlayerData.Level}");
             Console.WriteLine($"공격력: {Program.PlayerData.TotalAtk()} (+ 0.5)");
-            Console.WriteLine($"방어?력: {Program.PlayerData.TotalDef()} (+ 1)");
+            Console.WriteLine($"방어력: {Program.PlayerData.TotalDef()} (+ 1)");
         }
         // 플레이어 장비 장착, 해제 기능
         // type(방어구or무기)에 따라 자동 장착
