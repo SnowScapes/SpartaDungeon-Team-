@@ -12,7 +12,7 @@
 2. <기술> : C#
 3. <팀명> : 2%
 4. <팀원> : 곽경훈, 최관호, 이시원, 박재민
-5. <SA> : [2% Notion](https://teamsparta.notion.site/2-8558d1211ab049019c5faef439a576b0, "2% SA")
+5. <SA페이지> : [2% Notion](https://teamsparta.notion.site/2-8558d1211ab049019c5faef439a576b0, "2% SA")
 
 ---
 ### 🌔 플레이 영상
