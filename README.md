@@ -22,7 +22,11 @@
 ### 🌕 필수 구현 목록
 
 ##### 1. 게임 시작 화면    
+<details><summary>Click Me</summary>
+
    ![image](https://github.com/SnowScapes/SpartaDungeon-Team-/assets/39547945/d7c4b3cb-f61b-4e03-ba10-28009f38884e)    
+</details>
+
 ##### 2. 상태 보기 화면    
    ![image](https://github.com/SnowScapes/SpartaDungeon-Team-/assets/39547945/b0585f28-4947-48d2-a95d-0c8747caaf0d)    
 ##### 3. 전투 시작 화면    
